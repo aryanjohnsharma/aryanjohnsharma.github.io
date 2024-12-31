@@ -3,9 +3,12 @@
     <title>Aryan Sharma</title>
     <link rel="icon" type="image/x-icon" href="929e40bf95f7d027d97a2ba1fb39a8e7.ico">
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
       body{
         background-color: #101010;
         color: rgb(233, 233, 233);
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
       }
       p {
         font-size: 22px;
@@ -21,9 +24,29 @@
         display: inline;
         margin-left: 10px;
       }
+      .theme-toggle {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      }
+      .theme-toggle img {
+        width: 24px;
+        height: 24px;
+      }
     </style>
   </head>
   <body>
+    <div class="theme-toggle">
+      <img id="theme-icon" src="https://img.icons8.com/ios-filled/50/ffffff/sun.png" alt="Toggle Theme" />
+    </div>
     <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="https://www.youtube.com/channel/UCeFsH_IUT8z6r3txk1JDwgA">YouTube</a></li>
@@ -44,7 +67,7 @@
     <br>
     My name is <b> Aryan Sharma </b><br>
     </p>
-    <img style="height: 333px;" src="https://i.pinimg.com/564x/1b/a3/88/1ba3881b7a73c8571ed6fff2f902c494.jpg"></img>
+    <!-- Removed the image from here -->
     <br>
     <br>
     <br>
@@ -55,5 +78,23 @@
     <a href="https://instragram.com/aryanjohnsharma">✦✧Instagram✧✦</a>
     </big>
     </h1>
+    <script>
+      const themeToggle = document.querySelector('.theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      let isDark = true;
+
+      themeToggle.addEventListener('click', () => {
+        if (isDark) {
+          document.body.style.backgroundColor = '#ffffff';
+          document.body.style.color = '#000000';
+          themeIcon.src = 'https://img.icons8.com/ios-filled/50/000000/moon-symbol.png';
+        } else {
+          document.body.style.backgroundColor = '#101010';
+          document.body.style.color = 'rgb(233, 233, 233)';
+          themeIcon.src = 'https://img.icons8.com/ios-filled/50/ffffff/sun.png';
+        }
+        isDark = !isDark;
+      });
+    </script>
   </body>
 </html>
