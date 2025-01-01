@@ -9,6 +9,14 @@
         color: rgb(233, 233, 233);
         font-family: 'Roboto', sans-serif;
         font-weight: bold;
+        margin: 20px; /* Added margin around the edges */
+        border-radius: 15px; /* Rounded corners */
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      .content {
+        flex: 1;
       }
       p {
         font-size: 22px;
@@ -26,7 +34,7 @@
       }
       .theme-toggle {
         position: absolute;
-        top: 10px;
+        bottom: 10px;
         right: 10px;
         cursor: pointer;
         width: 40px;
@@ -78,6 +86,10 @@
         background-color: #ffffff;
         color: #000000;
       }
+      footer {
+        text-align: center;
+        padding: 10px;
+      }
     </style>
   </head>
   <body class="dark-theme">
@@ -88,37 +100,31 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="https://www.youtube.com/channel/UCeFsH_IUT8z6r3txk1JDwgA">YouTube</a></li>
           <li><a href="https://twitter.com/aryanjohnsharma">Bird</a></li>
-          <li><a href="https://aryanjohnsharma.blogspot.com/">Blog</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
     </header>
-    <div class="theme-toggle">
-      <img id="theme-icon" src="https://img.icons8.com/ios-filled/50/ffffff/sun.png" alt="Toggle Theme" />
+    <div class="content">
+      <p>
+        welcome to my corner of the internet !<br>
+      </p>
+      <br>
+      <br>
+      <br>
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">This website is still in devlopment state :-) </a>
+      <br>
+      <h1>
+        <big>
+          <a href="https://instragram.com/aryanjohnsharma">✦✧Instagram✧✦</a>
+        </big>
+      </h1>
     </div>
-    <p>
-    welcome to my corner of the internet !<br>
-    My web design skills may be deemed lacking,
-    a mere trifle compared to my expertise in the world of kernels. But do not be fooled,
-    for hidden beneath this cape lies a formidable ability ~ the power to manipulate moving images.
-    I am the vigilante of video editing, deftly assembling scenes to create a symphony of visual storytelling.
-    Gotham's screens tremble in anticipation as I unleash my skills upon them.
-    Remember my name, for it strikes fear into the hearts of the editing abyss.
-    I am the Batman of editing.<br>
-    <br>
-    My name is <b> Aryan Sharma </b><br>
-    </p>
-    <!-- Removed the image from here -->
-    <br>
-    <br>
-    <br>
-     <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">This website is still in devlopment state :-) </a>
-</code><br>
-    <h1>
-    <big>
-    <a href="https://instragram.com/aryanjohnsharma">✦✧Instagram✧✦</a>
-    </big>
-    </h1>
+    <footer>
+      <p>Made with ♥️ by Aryan Sharma | © 2025</p>
+      <div class="theme-toggle">
+        <img id="theme-icon" src="https://img.icons8.com/ios-filled/50/ffffff/sun.png" alt="Toggle Theme" />
+      </div>
+    </footer>
     <script>
       const themeToggle = document.querySelector('.theme-toggle');
       const themeIcon = document.getElementById('theme-icon');
@@ -136,8 +142,5 @@
         }
       });
     </script>
-    <footer>
-      <p>Made with ♥️ by Aryan Sharma | © 2025</p>
-    </footer>
   </body>
 </html>
