@@ -12,14 +12,43 @@
         display: inline;
         margin-left: 10px;
       }
+      header, footer {
+        padding: 10px;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .nav-links {
+        text-align: right;
+      }
+      .nav-links ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      .nav-links li {
+        font-size: 22px;
+        display: inline;
+        margin-left: 10px;
+      }
     </style>
   </head>
   <body>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#">Blogs</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="#">About</a></li>
-    </ul>
+    <header>
+      <h1>Aryan Sharma</h1>
+      <div class="nav-links">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Blogs</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+    </header>
+    <footer>
+      <p>Made with ♥️ by Aryan Sharma | © 2025</p>
+    </footer>
   </body>
 </html>

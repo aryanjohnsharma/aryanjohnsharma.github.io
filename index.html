@@ -41,20 +41,61 @@
         width: 24px;
         height: 24px;
       }
+      header, footer {
+        padding: 10px;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .nav-links {
+        text-align: right;
+      }
+      .nav-links ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      .nav-links li {
+        font-size: 22px;
+        display: inline;
+        margin-left: 10px;
+      }
+      .dark-theme header, .dark-theme footer {
+        background-color: #333333;
+        color: rgb(233, 233, 233);
+      }
+      .light-theme header, .light-theme footer {
+        background-color: #f1f1f1;
+        color: #000000;
+      }
+      .dark-theme {
+        background-color: #101010;
+        color: rgb(233, 233, 233);
+      }
+      .light-theme {
+        background-color: #ffffff;
+        color: #000000;
+      }
     </style>
   </head>
-  <body>
+  <body class="dark-theme">
+    <header>
+      <h1>Aryan Sharma</h1>
+      <div class="nav-links">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="https://www.youtube.com/channel/UCeFsH_IUT8z6r3txk1JDwgA">YouTube</a></li>
+          <li><a href="https://twitter.com/aryanjohnsharma">Bird</a></li>
+          <li><a href="https://aryanjohnsharma.blogspot.com/">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </header>
     <div class="theme-toggle">
       <img id="theme-icon" src="https://img.icons8.com/ios-filled/50/ffffff/sun.png" alt="Toggle Theme" />
     </div>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="https://www.youtube.com/channel/UCeFsH_IUT8z6r3txk1JDwgA">YouTube</a></li>
-        <li><a href="https://twitter.com/aryanjohnsharma">Bird</a></li>
-        <li><a href="https://aryanjohnsharma.blogspot.com/">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        
-    </ul>
     <p>
     welcome to my corner of the internet !<br>
     My web design skills may be deemed lacking,
@@ -81,20 +122,22 @@
     <script>
       const themeToggle = document.querySelector('.theme-toggle');
       const themeIcon = document.getElementById('theme-icon');
-      let isDark = true;
+      const body = document.body;
 
       themeToggle.addEventListener('click', () => {
-        if (isDark) {
-          document.body.style.backgroundColor = '#ffffff';
-          document.body.style.color = '#000000';
+        if (body.classList.contains('dark-theme')) {
+          body.classList.remove('dark-theme');
+          body.classList.add('light-theme');
           themeIcon.src = 'https://img.icons8.com/ios-filled/50/000000/moon-symbol.png';
         } else {
-          document.body.style.backgroundColor = '#101010';
-          document.body.style.color = 'rgb(233, 233, 233)';
+          body.classList.remove('light-theme');
+          body.classList.add('dark-theme');
           themeIcon.src = 'https://img.icons8.com/ios-filled/50/ffffff/sun.png';
         }
-        isDark = !isDark;
       });
     </script>
+    <footer>
+      <p>Made with ♥️ by Aryan Sharma | © 2025</p>
+    </footer>
   </body>
 </html>
