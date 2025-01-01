@@ -3,39 +3,69 @@
     <title>Aryan Sharma</title>
     <link rel="icon" type="image/x-icon" href="929e40bf95f7d027d97a2ba1fb39a8e7.ico">
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
-      body{
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+      body {
         background-color: #101010;
         color: rgb(233, 233, 233);
         font-family: 'Roboto', sans-serif;
-        font-weight: bold;
-        margin: 20px; /* Added margin around the edges */
-        border-radius: 15px; /* Rounded corners */
+        margin: 0;
+        padding: 0;
         display: flex;
         flex-direction: column;
         min-height: 100vh;
       }
-      .content {
-        flex: 1;
+      header, footer {
+        background-color: #333333;
+        color: rgb(233, 233, 233);
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
-      p {
-        font-size: 22px;
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
-      ul {
-        text-align: center;
+      .nav-links ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
+        display: flex;
       }
-      li {
-        font-size: 22px;
-        display: inline;
-        margin-left: 10px;
+      .nav-links li {
+        margin-left: 20px;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: rgb(233, 233, 233);
+        transition: color 0.3s;
+      }
+      .nav-links a:hover {
+        color: #007bff;
+      }
+      .content {
+        flex: 1;
+        padding: 20px;
+        text-align: center;
+      }
+      p {
+        font-size: 18px;
+        line-height: 1.6;
+      }
+      a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      a:hover {
+        color: #0056b3;
       }
       .theme-toggle {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
         cursor: pointer;
         width: 40px;
         height: 40px;
@@ -43,52 +73,48 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
       }
       .theme-toggle img {
         width: 24px;
         height: 24px;
       }
-      header, footer {
-        padding: 10px;
-      }
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .nav-links {
-        text-align: right;
-      }
-      .nav-links ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
-      .nav-links li {
-        font-size: 22px;
-        display: inline;
-        margin-left: 10px;
-      }
-      .dark-theme header, .dark-theme footer {
-        background-color: #333333;
-        color: rgb(233, 233, 233);
-      }
-      .light-theme header, .light-theme footer {
-        background-color: #f1f1f1;
-        color: #000000;
-      }
-      .dark-theme {
-        background-color: #101010;
-        color: rgb(233, 233, 233);
-      }
-      .light-theme {
-        background-color: #ffffff;
-        color: #000000;
-      }
       footer {
         text-align: center;
-        padding: 10px;
+        font-size: 14px;
+      }
+      .light-theme {
+        background-color: #f5f5f5;
+        color: #333;
+      }
+      .light-theme header, .light-theme footer {
+        background-color: #fff;
+        color: #333;
+      }
+      .light-theme .nav-links a {
+        color: #333;
+      }
+      .light-theme .nav-links a:hover {
+        color: #007bff;
+      }
+      .light-theme .theme-toggle {
+        background-color: #333;
+      }
+      .light-theme .theme-toggle img {
+        filter: invert(1);
+      }
+      .dark-theme .theme-toggle img {
+        filter: invert(0);
+      }
+      @media (max-width: 768px) {
+        .nav-links ul {
+          flex-direction: column;
+        }
+        .nav-links li {
+          margin-left: 0;
+          margin-top: 10px;
+        }
       }
     </style>
   </head>
@@ -100,29 +126,19 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="https://www.youtube.com/channel/UCeFsH_IUT8z6r3txk1JDwgA">YouTube</a></li>
           <li><a href="https://twitter.com/aryanjohnsharma">Bird</a></li>
+          <li><a href="https://instragram.com/aryanjohnsharma">Insta</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
     </header>
     <div class="content">
-      <p>
-        welcome to my corner of the internet !<br>
-      </p>
-      <br>
-      <br>
-      <br>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">This website is still in devlopment state :-) </a>
-      <br>
-      <h1>
-        <big>
-          <a href="https://instragram.com/aryanjohnsharma">✦✧Instagram✧✦</a>
-        </big>
-      </h1>
+      <p>Welcome to my corner of the internet!</p>
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">This website is still in development state :-)</a>
     </div>
     <footer>
       <p>Made with ♥️ by Aryan Sharma | © 2025</p>
       <div class="theme-toggle">
-        <img id="theme-icon" src="https://img.icons8.com/ios-filled/50/ffffff/sun.png" alt="Toggle Theme" />
+        <img id="theme-icon" src="https://img.icons8.com/ios-filled/50/000000/sun.png" alt="Toggle Theme" />
       </div>
     </footer>
     <script>
@@ -138,7 +154,7 @@
         } else {
           body.classList.remove('light-theme');
           body.classList.add('dark-theme');
-          themeIcon.src = 'https://img.icons8.com/ios-filled/50/ffffff/sun.png';
+          themeIcon.src = 'https://img.icons8.com/ios-filled/50/000000/sun.png';
         }
       });
     </script>
