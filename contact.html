@@ -1,70 +1,95 @@
-<html>
-  <head>
-    <title>Aryan Sharma</title>
-    <style>
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
-      li {
-        font-size: 22px;
-        display: inline;
-        margin-left: 10px;
-      }
-      header, footer {
-        padding: 10px;
-      }
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .nav-links {
-        text-align: right;
-      }
-      .nav-links ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
-      .nav-links li {
-        font-size: 22px;
-        display: inline;
-        margin-left: 10px;
-      }
-      footer {
-        text-align: center;
-        padding: 10px;
-      }
-      body {
-        margin: 20px; /* Added margin around the edges */
-        border-radius: 15px; /* Rounded corners */
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-      .content {
-        flex: 1;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1>Aryan Sharma</h1>
-      <div class="nav-links">
-        <ul>
-          <li><a href="index.html">🏠</a></li>
-          <li><a href="contact.html">📞</a></li>
-          <li><a href="#">ℹ️</a></li>
-        </ul>
-      </div>
-    </header>
-    <div class="content">
-      <!-- Content goes here -->
-    </div>
-    <footer>
-      <p>Made with ♥️ by Aryan Sharma | © 2025</p>
-    </footer>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Aryan Sharma</title>
+    <link rel="icon" type="image/x-icon" href="929e40bf95f7d027d97a2ba1fb39a8e7.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
++     <button class="hamburger" aria-label="Open navigation" onclick="toggleSidebar()">
++         <span></span>
++     </button>
+    <aside class="sidebar">
+        <div class="profile">
+            <img src="pfp.png" alt="Aryan Sharma" class="profile-img">
+            <h2>Aryan Sharma</h2>
+            <p class="subtitle">Developer // Freelancer</p>
+        </div>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="setup.html">My Setup</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="social-links">
+            <a href="https://twitter.com/aryanjohnsharma" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com/aryanjohnsharma" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/aryanjohnsharma" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/aryanjohnsharma" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </aside>
+
+    <main>
+        <section class="contact-section">
+            <div class="contact-content">
+                <h1>Get in Touch</h1>
+                <p class="subtitle">Feel free to reach out for collaborations or just a friendly hello</p>
+                
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Dhanbad, Jharkhand, India</p>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <p>aryanjohnsharma@gmail.com</p>
+                        </div>
+                        <div class="social-links-contact">
+                            <a href="https://twitter.com/aryanjohnsharma" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="https://instagram.com/aryanjohnsharma" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="https://linkedin.com/in/aryanjohnsharma" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.youtube.com/channel/UCeFsH_IUT8z6r3txk1JDwgA" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <button id="copyEmailBtn" class="btn primary" onclick="window.location.href='mailto:aryanjohnsharma@gmail.com'">
+                            <i class="fas fa-clipboard"></i>
+                            Copy Email
+                        </button>
+                        <p id="copyStatus" class="copy-status">Email copied to clipboard!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('copyEmailBtn').addEventListener('click', function() {
+            window.location.href = 'mailto:aryanjohnsharma@gmail.com';
+        });
+    </script>
++<script>
++    // Hamburger menu functionality
++    function toggleSidebar() {
++        const sidebar = document.querySelector('.sidebar');
++        sidebar.classList.toggle('open');
++    }
++    // Close sidebar when clicking outside on mobile
++    document.addEventListener('click', function(e) {
++        const sidebar = document.querySelector('.sidebar');
++        const hamburger = document.querySelector('.hamburger');
++        if (window.innerWidth <= 768 && sidebar.classList.contains('open')) {
++            if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
++                sidebar.classList.remove('open');
++            }
++        }
++    });
++</script>
+</body>
 </html>
