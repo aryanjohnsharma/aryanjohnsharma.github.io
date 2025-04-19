@@ -1,48 +1,289 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aryan Sharma</title>
     <link rel="icon" type="image/x-icon" href="929e40bf95f7d027d97a2ba1fb39a8e7.ico">
     <link rel="stylesheet" href="style.css">
-  </head>
-  <body class="dark-theme">
-    <header>
-      <h1>Aryan Sharma</h1>
-      <div class="nav-links">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="https://www.youtube.com/channel/UCeFsH_IUT8z6r3txk1JDwgA">YouTube</a></li>
-          <li><a href="https://twitter.com/aryanjohnsharma">Bird</a></li>
-          <li><a href="https://instragram.com/aryanjohnsharma">Insta</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </header>
-    <div class="content">
-      <p>Welcome to my corner of the internet!</p>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">This website is still in development state :-)</a>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <!-- Spotify Toggle Button -->
+    <div class="spotify-toggle" onclick="toggleSpotify()">
+        <i class="fas fa-music"></i>
     </div>
-    <footer>
-      <p>Made with ♥️ by Aryan Sharma | © 2025</p>
-      <div class="theme-toggle">
-        <img id="theme-icon" src="https://img.icons8.com/ios-filled/50/000000/sun.png" alt="Toggle Theme" />
-      </div>
-    </footer>
-    <script>
-      const themeToggle = document.querySelector('.theme-toggle');
-      const themeIcon = document.getElementById('theme-icon');
-      const body = document.body;
 
-      themeToggle.addEventListener('click', () => {
-        if (body.classList.contains('dark-theme')) {
-          body.classList.remove('dark-theme');
-          body.classList.add('light-theme');
-          themeIcon.src = 'https://img.icons8.com/ios-filled/50/000000/moon-symbol.png';
-        } else {
-          body.classList.remove('light-theme');
-          body.classList.add('dark-theme');
-          themeIcon.src = 'https://img.icons8.com/ios-filled/50/000000/sun.png';
+    <!-- Spotify Music Widget -->
+    <div class="spotify-button" id="spotifyWidget">
+        <a href="https://open.spotify.com/user/r95f1qecgkdxt73wiyorgokf2" target="_blank" rel="noopener noreferrer">
+            <div class="spotify-widget">
+                <img src="https://spotify-recently-played-readme.vercel.app/api?user=r95f1qecgkdxt73wiyorgokf2&count=7" alt="Spotify recently played" />
+            </div>
+        </a>
+    </div>
+
+    <button class="hamburger" aria-label="Open navigation" onclick="toggleSidebar()">
+        <span></span>
+    </button>
+    <aside class="sidebar">
+        <div class="profile">
+            <img src="PFP.jpeg" alt="Aryan Sharma" class="profile-img" onclick="showPFPModal()">
+            <h2>Aryan Sharma</h2>
+            <p class="subtitle">Developer // Freelancer</p>
+        </div>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="setup.html">My Setup</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="theme-switcher">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <div class="social-links">
+            <a href="https://twitter.com/aryanjohnsharma" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com/aryanjohnsharma" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/aryanjohnsharma" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/aryanjohnsharma" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </aside>
+
+    <main>
+        <div class="date-time">Loading...</div>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Hello! I'm Aryan Sharma</h1>
+                <p class="subtitle">Tech Enthusiast | AI & Software Developer | IT Professional</p>
+                <div class="location-badge">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Dhanbad, Jharkhand, India</span>
+                </div>
+                <p class="education">B.Tech Undergrad (IT), Asansol Engineering College</p>
+                <p class="tagline">Passionate about Coding, LLMs & Generative AI</p>
+                <div class="hero-buttons">
+                    <a href="setup.html" class="btn primary">My Setup</a>
+                    <button class="btn secondary copy-email" onclick="window.location.href='mailto:aryanjohnsharma@gmail.com'">
+                        <i class="fas fa-clipboard"></i>
+                        Copy email
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Frameworks & Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">ReactJs</span>
+                        <span class="skill-tag">NextJs</span>
+                        <span class="skill-tag">NodeJs</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">SASS</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">VSCode</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Core Concepts</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Object-Oriented Programming</span>
+                        <span class="skill-tag">Data Structures and Algorithms</span>
+                        <span class="skill-tag">Database Management Systems</span>
+                        <span class="skill-tag">Full-Stack Development</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <p>Made with <span class="heart" role="button" tabindex="0">♥️</span> by Aryan Sharma | © 2025</p>
+        </div>
+    </footer>
+
+    <!-- Profile Photo Modal -->
+    <div class="pfp-modal" id="pfpModal">
+        <div class="pfp-modal-content">
+            <span class="close-modal" onclick="closePFPModal()">&times;</span>
+            <img src="PFP.jpeg" alt="Aryan Sharma" class="modal-pfp">
+        </div>
+    </div>
+    
+    <script>
+        // Date and Time Display
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'short', 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+            const dateTimeString = now.toLocaleDateString('en-US', options);
+            const dateTimeElement = document.querySelector('.date-time');
+            if (dateTimeElement) {
+                dateTimeElement.textContent = dateTimeString;
+            }
         }
-      });
+
+        // Update immediately and then every second
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        // Ensure the element exists and is visible
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateTimeElement = document.querySelector('.date-time');
+            if (dateTimeElement) {
+                dateTimeElement.style.display = 'block';
+            }
+        });
+
+        // Confetti effect for heart
+        const heart = document.querySelector('.heart');
+        heart.addEventListener('click', () => {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        });
+        
+        // Make heart keyboard accessible
+        heart.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+        });
+
+        // Copy email functionality
+        const copyEmailBtn = document.querySelector('.copy-email');
+        copyEmailBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText('aryanjohnsharma@gmail.com');
+            copyEmailBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            setTimeout(() => {
+                copyEmailBtn.innerHTML = '<i class="fas fa-clipboard"></i> Copy email';
+            }, 2000);
+        });
+        // Theme switching functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        const html = document.documentElement;
+        
+        // Set dark theme as default
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        
+        // Update icon based on current theme
+        updateThemeIcon();
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon();
+        });
+        
+        function updateThemeIcon() {
+            const currentTheme = html.getAttribute('data-theme');
+            const icon = themeToggle.querySelector('i');
+            
+            if (currentTheme === 'dark') {
+                icon.className = 'fas fa-moon';
+            } else {
+                icon.className = 'fas fa-sun';
+            }
+        }
+
+        // Hamburger menu functionality
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('open');
+        }
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(e) {
+            const sidebar = document.querySelector('.sidebar');
+            const hamburger = document.querySelector('.hamburger');
+            if (window.innerWidth <= 768 && sidebar.classList.contains('open')) {
+                if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                }
+            }
+        });
+
+        function showPFPModal() {
+            const modal = document.getElementById('pfpModal');
+            modal.classList.add('active');
+        }
+
+        function closePFPModal() {
+            const modal = document.getElementById('pfpModal');
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('pfpModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePFPModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePFPModal();
+            }
+        });
+
+        // Spotify Widget Toggle
+        function toggleSpotify() {
+            const widget = document.getElementById('spotifyWidget');
+            widget.classList.toggle('active');
+        }
     </script>
-  </body>
+    
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" onclick="scrollToTop()"></div>
+    
+    <script>
+        // Scroll Indicator Logic
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
 </html>
