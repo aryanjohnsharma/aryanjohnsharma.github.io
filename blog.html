@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aryan Sharma</title>
+    <title>Blog | Aryan Sharma</title>
     <link rel="icon" type="image/x-icon" href="929e40bf95f7d027d97a2ba1fb39a8e7.ico">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <!-- Spotify Toggle Button -->
@@ -35,9 +34,9 @@
         </div>
         <nav class="nav-links">
             <ul>
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="setup.html">My Setup</a></li>
-                <li><a href="blog.html">Blog | TL;DR</a></li>
+                <li><a href="blog.html" class="active">Blog | TL;DR</a></li>
             </ul>
         </nav>
         <div class="theme-switcher">
@@ -59,70 +58,46 @@
 
     <main>
         <div class="date-time">Loading...</div>
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Hello! I'm Aryan Sharma</h1>
-                <p class="subtitle">Tech Enthusiast | AI & Software Developer | IT Professional</p>
-                <div class="location-badge">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Dhanbad, Jharkhand, India</span>
-                </div>
-                <p class="education">B.Tech Undergrad (IT), Asansol Engineering College</p>
-                <p class="tagline">Passionate about Coding, LLMs & Generative AI</p>
-                <div class="hero-buttons">
-                    <a href="setup.html" class="btn primary">My Setup</a>
-                    <button class="btn secondary copy-email" onclick="window.location.href='mailto:aryanjohnsharma@gmail.com'">
-                        <i class="fas fa-clipboard"></i>
-                        Copy email
-                    </button>
-                    <a href="resume.pdf" class="btn resume-btn" target="_blank">
-                        <i class="fas fa-file-alt"></i>
-                        Resumeᶜᵘʳʳⁱᶜᵘˡᵘᵐ ᵛⁱᵗᵃᵉ
-                    </a>
-                </div>
+        <section class="blog-section">
+            <h1 class="blog-title">TL;DR</h1>
+            
+            <div class="category-tabs">
+                <button class="category-tab active">ALL</button>
+                <button class="category-tab">PIRACY</button>
+                <button class="category-tab">TECH</button>
+                <button class="category-tab">THOUGHTS</button>
+                <button class="category-tab">PROJECTS</button>
+                <button class="category-tab">LIFE</button>
             </div>
-        </section>
 
-        <section id="skills" class="skills">
-            <h2>Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-group">
-                    <h3>Languages</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">HTML</span>
-                        <span class="skill-tag">CSS</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">TypeScript</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h3>Frameworks & Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">ReactJs</span>
-                        <span class="skill-tag">NextJs</span>
-                        <span class="skill-tag">NodeJs</span>
-                        <span class="skill-tag">Express</span>
-                        <span class="skill-tag">Tailwind CSS</span>
-                        <span class="skill-tag">SASS</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">GitHub</span>
-                        <span class="skill-tag">VSCode</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h3>Core Concepts</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Object-Oriented Programming</span>
-                        <span class="skill-tag">Data Structures and Algorithms</span>
-                        <span class="skill-tag">Database Management Systems</span>
-                        <span class="skill-tag">Full-Stack Development</span>
-                    </div>
-                </div>
+            <div class="blog-grid">
+                <article class="blog-post">
+                    <a href="blog/ai-development-guide.html" class="post-link">
+                        <h2>Getting Started with AI Development</h2>
+                        <p class="post-excerpt">
+                            A comprehensive guide to starting your journey in AI development, covering essential tools, frameworks, and best practices.
+                        </p>
+                    </a>
+                </article>
+
+                <article class="blog-post">
+                    <a href="blog/web-dev-2024.html" class="post-link">
+                        <h2>Web Development Best Practices in 2024</h2>
+                        <p class="post-excerpt">
+                            Exploring the latest trends and best practices in web development, from performance optimization to modern frameworks.
+                        </p>
+                    </a>
+                </article>
+
+                <article class="blog-post">
+                    <a href="blog/llm-software-dev.html" class="post-link">
+                        <h2>The Future of LLMs in Software Development</h2>
+                        <p class="post-excerpt">
+                            How Large Language Models are revolutionizing software development and what developers need to know.
+                        </p>
+                    </a>
+                </article>
             </div>
-        </section>
         </section>
     </main>
     
@@ -165,44 +140,6 @@
         updateDateTime();
         setInterval(updateDateTime, 1000);
 
-        // Ensure the element exists and is visible
-        document.addEventListener('DOMContentLoaded', function() {
-            const dateTimeElement = document.querySelector('.date-time');
-            if (dateTimeElement) {
-                dateTimeElement.style.display = 'block';
-            }
-        });
-
-        // Confetti effect for heart
-        const heart = document.querySelector('.heart');
-        heart.addEventListener('click', () => {
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-        });
-        
-        // Make heart keyboard accessible
-        heart.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 }
-                });
-            }
-        });
-
-        // Copy email functionality
-        const copyEmailBtn = document.querySelector('.copy-email');
-        copyEmailBtn.addEventListener('click', () => {
-            navigator.clipboard.writeText('aryanjohnsharma@gmail.com');
-            copyEmailBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-            setTimeout(() => {
-                copyEmailBtn.innerHTML = '<i class="fas fa-clipboard"></i> Copy email';
-            }, 2000);
-        });
         // Theme switching functionality
         const themeToggle = document.querySelector('.theme-toggle');
         const html = document.documentElement;
@@ -239,6 +176,7 @@
             const sidebar = document.querySelector('.sidebar');
             sidebar.classList.toggle('open');
         }
+
         // Close sidebar when clicking outside on mobile
         document.addEventListener('click', function(e) {
             const sidebar = document.querySelector('.sidebar');
