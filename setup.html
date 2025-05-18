@@ -11,34 +11,69 @@
 <body>
     <button class="hamburger" aria-label="Open navigation" onclick="toggleSidebar()">
         <span></span>
+        <span></span>
+        <span></span>
     </button>
     <aside class="sidebar">
-        <div class="profile">
-            <img src="pfp_new.jpeg" alt="Aryan Sharma" class="profile-img">
-            <h2>Aryan Sharma</h2>
-            <p class="subtitle">Developer // Freelancer</p>
-        </div>
-        <nav class="nav-links">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="setup.html" class="active">My Setup</a></li>
-                <li><a href="blog.html">Blog | TL;DR</a></li>
-            </ul>
-        </nav>
-        <div class="theme-switcher">
-            <button class="theme-toggle" aria-label="Toggle theme">
-                <i class="fas fa-moon"></i>
-            </button>
-        </div>
-        <a href="contact.html" class="contact-link">
-            <i class="fas fa-envelope"></i>
-            Contact
-        </a>
-        <div class="social-links">
-            <a href="https://twitter.com/aryanjohnsharma" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://instagram.com/aryanjohnsharma" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://github.com/aryanjohnsharma" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/aryanjohnsharma" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <div class="sidebar-content">
+            <div class="profile">
+                <div class="profile-image-container">
+                    <img src="pfp_new.jpeg" alt="Aryan Sharma" class="profile-img" onclick="showPFPModal()" loading="lazy">
+                </div>
+                <h2>Aryan Sharma</h2>
+                <p class="subtitle">Developer // Freelancer</p>
+            </div>
+            
+            <nav class="nav-links">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="setup.html" class="active">
+                            <i class="fas fa-laptop-code"></i>
+                            <span>My Setup</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="blog.html">
+                            <i class="fas fa-blog"></i>
+                            <span>Blog | TL;DR</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="theme-switcher">
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                
+                <a href="contact.html" class="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+
+                <div class="social-links">
+                    <a href="https://twitter.com/aryanjohnsharma" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com/aryanjohnsharma" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://github.com/aryanjohnsharma" class="social-icon" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/aryanjohnsharma" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </aside>
 
@@ -119,6 +154,14 @@
         </div>
     </footer>
 
+    <!-- Profile Photo Modal -->
+    <div class="pfp-modal" id="pfpModal">
+        <div class="pfp-modal-content">
+            <span class="close-modal" onclick="closePFPModal()">&times;</span>
+            <img src="pfp_new.jpeg" alt="Aryan Sharma" class="modal-pfp">
+        </div>
+    </div>
+    
     <script>
         // Theme switching functionality
         const themeToggle = document.querySelector('.theme-toggle');
@@ -156,6 +199,7 @@
             const sidebar = document.querySelector('.sidebar');
             sidebar.classList.toggle('open');
         }
+
         // Close sidebar when clicking outside on mobile
         document.addEventListener('click', function(e) {
             const sidebar = document.querySelector('.sidebar');
@@ -166,6 +210,25 @@
                 }
             }
         });
+
+        // Profile Photo Modal functionality
+        function showPFPModal() {
+            const modal = document.getElementById('pfpModal');
+            modal.classList.add('active');
+        }
+
+        function closePFPModal() {
+            const modal = document.getElementById('pfpModal');
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('pfpModal');
+            if (event.target === modal) {
+                modal.classList.remove('active');
+            }
+        }
     </script>
     
     <!-- Scroll Indicator -->

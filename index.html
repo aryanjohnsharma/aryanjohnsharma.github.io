@@ -26,34 +26,69 @@
 
     <button class="hamburger" aria-label="Open navigation" onclick="toggleSidebar()">
         <span></span>
+        <span></span>
+        <span></span>
     </button>
     <aside class="sidebar">
-        <div class="profile">
-            <img src="pfp_new.jpeg" alt="Aryan Sharma" class="profile-img" onclick="showPFPModal()">
-            <h2>Aryan Sharma</h2>
-            <p class="subtitle">Developer // Freelancer</p>
-        </div>
-        <nav class="nav-links">
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="setup.html">My Setup</a></li>
-                <li><a href="blog.html">Blog | TL;DR</a></li>
-            </ul>
-        </nav>
-        <div class="theme-switcher">
-            <button class="theme-toggle" aria-label="Toggle theme">
-                <i class="fas fa-moon"></i>
-            </button>
-        </div>
-        <a href="contact.html" class="contact-link">
-            <i class="fas fa-envelope"></i>
-            Contact
-        </a>
-        <div class="social-links">
-            <a href="https://twitter.com/aryanjohnsharma" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://instagram.com/aryanjohnsharma" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://github.com/aryanjohnsharma" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/aryanjohnsharma" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <div class="sidebar-content">
+            <div class="profile">
+                <div class="profile-image-container">
+                    <img src="pfp_new.jpeg" alt="Aryan Sharma" class="profile-img" onclick="showPFPModal()" loading="lazy">
+                </div>
+                <h2>Aryan Sharma</h2>
+                <p class="subtitle">Developer // Freelancer</p>
+            </div>
+            
+            <nav class="nav-links">
+                <ul>
+                    <li>
+                        <a href="index.html" class="active">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="setup.html">
+                            <i class="fas fa-laptop-code"></i>
+                            <span>My Setup</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="blog.html">
+                            <i class="fas fa-blog"></i>
+                            <span>Blog | TL;DR</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="theme-switcher">
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                
+                <a href="contact.html" class="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+
+                <div class="social-links">
+                    <a href="https://twitter.com/aryanjohnsharma" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com/aryanjohnsharma" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://github.com/aryanjohnsharma" class="social-icon" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/aryanjohnsharma" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </aside>
 
@@ -141,6 +176,106 @@
     </div>
     
     <script>
+        // Sidebar functionality
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const hamburger = document.querySelector('.hamburger');
+            sidebar.classList.toggle('open');
+            hamburger.classList.toggle('open');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(e) {
+            const sidebar = document.querySelector('.sidebar');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (window.innerWidth <= 768 && sidebar.classList.contains('open')) {
+                if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                    hamburger.classList.remove('open');
+                }
+            }
+        });
+
+        // Close sidebar when pressing Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const sidebar = document.querySelector('.sidebar');
+                const hamburger = document.querySelector('.hamburger');
+                sidebar.classList.remove('open');
+                hamburger.classList.remove('open');
+            }
+        });
+
+        // Theme switching functionality
+        function initializeTheme() {
+            const themeToggle = document.querySelector('.theme-toggle');
+            const html = document.documentElement;
+            
+            // Set theme based on saved preference or default to dark
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            html.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+            
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+        }
+        
+        function updateThemeIcon(theme) {
+            const themeToggle = document.querySelector('.theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (theme === 'dark') {
+                icon.className = 'fas fa-moon';
+            } else {
+                icon.className = 'fas fa-sun';
+            }
+        }
+
+        // Initialize theme when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializeTheme);
+
+        // Profile modal functionality
+        function showPFPModal() {
+            const modal = document.getElementById('pfpModal');
+            modal.classList.add('active');
+        }
+
+        function closePFPModal() {
+            const modal = document.getElementById('pfpModal');
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('pfpModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePFPModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePFPModal();
+            }
+        });
+
+        // Copy email functionality
+        const copyEmailBtn = document.querySelector('.copy-email');
+        copyEmailBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText('aryanjohnsharma@gmail.com');
+            copyEmailBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            setTimeout(() => {
+                copyEmailBtn.innerHTML = '<i class="fas fa-clipboard"></i> Copy email';
+            }, 2000);
+        });
+
         // Date and Time Display
         function updateDateTime() {
             const now = new Date();
@@ -165,14 +300,6 @@
         updateDateTime();
         setInterval(updateDateTime, 1000);
 
-        // Ensure the element exists and is visible
-        document.addEventListener('DOMContentLoaded', function() {
-            const dateTimeElement = document.querySelector('.date-time');
-            if (dateTimeElement) {
-                dateTimeElement.style.display = 'block';
-            }
-        });
-
         // Confetti effect for heart
         const heart = document.querySelector('.heart');
         heart.addEventListener('click', () => {
@@ -191,86 +318,6 @@
                     spread: 70,
                     origin: { y: 0.6 }
                 });
-            }
-        });
-
-        // Copy email functionality
-        const copyEmailBtn = document.querySelector('.copy-email');
-        copyEmailBtn.addEventListener('click', () => {
-            navigator.clipboard.writeText('aryanjohnsharma@gmail.com');
-            copyEmailBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-            setTimeout(() => {
-                copyEmailBtn.innerHTML = '<i class="fas fa-clipboard"></i> Copy email';
-            }, 2000);
-        });
-        // Theme switching functionality
-        const themeToggle = document.querySelector('.theme-toggle');
-        const html = document.documentElement;
-        
-        // Set dark theme as default
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        html.setAttribute('data-theme', savedTheme);
-        
-        // Update icon based on current theme
-        updateThemeIcon();
-        
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon();
-        });
-        
-        function updateThemeIcon() {
-            const currentTheme = html.getAttribute('data-theme');
-            const icon = themeToggle.querySelector('i');
-            
-            if (currentTheme === 'dark') {
-                icon.className = 'fas fa-moon';
-            } else {
-                icon.className = 'fas fa-sun';
-            }
-        }
-
-        // Hamburger menu functionality
-        function toggleSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.classList.toggle('open');
-        }
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(e) {
-            const sidebar = document.querySelector('.sidebar');
-            const hamburger = document.querySelector('.hamburger');
-            if (window.innerWidth <= 768 && sidebar.classList.contains('open')) {
-                if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
-                    sidebar.classList.remove('open');
-                }
-            }
-        });
-
-        function showPFPModal() {
-            const modal = document.getElementById('pfpModal');
-            modal.classList.add('active');
-        }
-
-        function closePFPModal() {
-            const modal = document.getElementById('pfpModal');
-            modal.classList.remove('active');
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('pfpModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closePFPModal();
-            }
-        });
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closePFPModal();
             }
         });
 
