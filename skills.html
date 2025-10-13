@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aryan Sharma</title>
+    <title>Technical Skills - Aryan Sharma</title>
     <link rel="icon" type="image/x-icon" href="929e40bf95f7d027d97a2ba1fb39a8e7.ico">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -29,6 +29,7 @@
         <span></span>
         <span></span>
     </button>
+    
     <aside class="sidebar">
         <div class="sidebar-content">
             <div class="profile">
@@ -42,13 +43,13 @@
             <nav class="nav-links">
                 <ul>
                     <li>
-                        <a href="index.html" class="active">
+                        <a href="index.html">
                             <i class="fas fa-home"></i>
                             <span>Home</span>
                         </a>
                     </li>
                     <li>
-                        <a href="skills.html">
+                        <a href="skills.html" class="active">
                             <i class="fas fa-code"></i>
                             <span>Technical Skills</span>
                         </a>
@@ -100,31 +101,72 @@
 
     <main>
         <div class="date-time">Loading...</div>
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Hello! I'm Aryan Sharma</h1>
-                <p class="subtitle">Tech Enthusiast | AI & Software Developer | IT Professional</p>
-                <div class="location-badge">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Dhanbad, Jharkhand, India</span>
-                </div>
-                <p class="education">B.Tech Undergrad (IT), Asansol Engineering College</p>
-                <p class="tagline">Passionate about Coding, LLMs & Generative AI</p>
-                <div class="hero-buttons">
-                    <a href="setup.html" class="btn primary">My Setup</a>
-                    <button class="btn secondary copy-email" onclick="window.location.href='mailto:aryanjohnsharma@gmail.com'">
-                        <i class="fas fa-clipboard"></i>
-                        Copy email
-                    </button>
-                    <a href="resume.pdf" class="btn resume-btn" target="_blank">
-                        <i class="fas fa-file-alt"></i>
-                        Resumeᶜᵘʳʳⁱᶜᵘˡᵘᵐ ᵛⁱᵗᵃᵉ
-                    </a>
-                </div>
+        <section class="skills-header">
+            <div class="skills-hero">
+                <h1>Technical Skills</h1>
+                <p class="skills-subtitle">My technical expertise and development capabilities</p>
             </div>
         </section>
 
-
+        <section class="skills">
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Frameworks & Libraries</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">ReactJs</span>
+                        <span class="skill-tag">NextJs</span>
+                        <span class="skill-tag">NodeJs</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">SASS</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Development Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">VSCode</span>
+                        <span class="skill-tag">npm</span>
+                        <span class="skill-tag">Webpack</span>
+                        <span class="skill-tag">Vite</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Core Concepts</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Object-Oriented Programming</span>
+                        <span class="skill-tag">Data Structures and Algorithms</span>
+                        <span class="skill-tag">Database Management Systems</span>
+                        <span class="skill-tag">Full-Stack Development</span>
+                        <span class="skill-tag">RESTful APIs</span>
+                        <span class="skill-tag">Responsive Web Design</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>AI & Machine Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Large Language Models</span>
+                        <span class="skill-tag">Generative AI</span>
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Natural Language Processing</span>
+                        <span class="skill-tag">AI Integration</span>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     
     <footer>
@@ -230,16 +272,6 @@
             if (e.key === 'Escape') {
                 closePFPModal();
             }
-        });
-
-        // Copy email functionality
-        const copyEmailBtn = document.querySelector('.copy-email');
-        copyEmailBtn.addEventListener('click', () => {
-            navigator.clipboard.writeText('aryanjohnsharma@gmail.com');
-            copyEmailBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-            setTimeout(() => {
-                copyEmailBtn.innerHTML = '<i class="fas fa-clipboard"></i> Copy email';
-            }, 2000);
         });
 
         // Date and Time Display

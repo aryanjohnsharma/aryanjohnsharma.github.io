@@ -916,6 +916,40 @@ main {
     padding: 2rem;
 }
 
+/* Skills page header */
+.skills-header {
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.skills-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    animation: fadeInUp 0.8s ease;
+    color: var(--text-color);
+    background: linear-gradient(45deg, #fff, rgba(167, 139, 250, 0.8));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.skills-subtitle {
+    color: var(--text-gray);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 1s ease;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    line-height: 1.5;
+}
+
 /* Skills section */
 .skills {
     padding: 4rem 2rem;
