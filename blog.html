@@ -93,45 +93,248 @@
 
     <main>
         <div class="date-time">Loading...</div>
-        <section class="blog-section">
-            <h1 class="blog-title">TL;DR</h1>
-            
-            <div class="category-tabs">
-                <button class="category-tab active">ALL</button>
-                <button class="category-tab">PIRACY</button>
-                <button class="category-tab">TECH</button>
-                <button class="category-tab">THOUGHTS</button>
-                <button class="category-tab">PROJECTS</button>
-                <button class="category-tab">LIFE</button>
+        
+        <!-- Blog Header Section -->
+        <section class="blog-header">
+            <div class="blog-header-content">
+                <span class="header-badge">Blog</span>
+                <h1 class="blog-title">TL;DR</h1>
+                <p class="blog-subtitle">Thoughts, discoveries, and insights from my journey in tech and life</p>
+                <div class="blog-stats">
+                    <span class="stat-item">
+                        <i class="fas fa-edit"></i>
+                        <span id="post-count">6</span> posts
+                    </span>
+                    <span class="stat-item">
+                        <i class="fas fa-tags"></i>
+                        <span id="category-count">5</span> categories
+                    </span>
+                </div>
             </div>
+        </section>
 
-            <div class="blog-grid">
-                <article class="blog-post">
-                    <a href="blog/ai-development-guide.html" class="post-link">
+        <!-- Category Filter Section -->
+        <section class="category-filter">
+            <div class="filter-container">
+                <button class="category-tab active" data-category="all">
+                    <i class="fas fa-globe"></i>
+                    <span>All</span>
+                    <span class="count">6</span>
+                </button>
+                <button class="category-tab" data-category="tech">
+                    <i class="fas fa-code"></i>
+                    <span>Tech</span>
+                    <span class="count">3</span>
+                </button>
+                <button class="category-tab" data-category="ai">
+                    <i class="fas fa-robot"></i>
+                    <span>AI</span>
+                    <span class="count">2</span>
+                </button>
+                <button class="category-tab" data-category="projects">
+                    <i class="fas fa-rocket"></i>
+                    <span>Projects</span>
+                    <span class="count">1</span>
+                </button>
+                <button class="category-tab" data-category="thoughts">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Thoughts</span>
+                    <span class="count">0</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="blog-search" placeholder="Search posts..." autocomplete="off">
+                    <button class="clear-search" id="clear-search" style="display: none;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Posts Grid -->
+        <section class="blog-content">
+            <div class="blog-grid" id="blog-grid">
+                <!-- Featured Post -->
+                <article class="blog-post featured" data-category="ai" data-date="2024-01-15">
+                    <div class="post-image">
+                        <div class="post-category">AI</div>
+                        <div class="post-date">Jan 15, 2024</div>
+                    </div>
+                    <div class="post-content">
                         <h2>Getting Started with AI Development</h2>
                         <p class="post-excerpt">
-                            A comprehensive guide to starting your journey in AI development, covering essential tools, frameworks, and best practices.
+                            A comprehensive guide to starting your journey in AI development, covering essential tools, frameworks, and best practices for modern machine learning projects.
                         </p>
-                    </a>
+                        <div class="post-meta">
+                            <span class="read-time">
+                                <i class="fas fa-clock"></i>
+                                5 min read
+                            </span>
+                            <span class="post-tags">
+                                <span class="tag">AI</span>
+                                <span class="tag">Machine Learning</span>
+                                <span class="tag">Python</span>
+                            </span>
+                        </div>
+                        <a href="#" class="read-more">
+                            Read More
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </article>
 
-                <article class="blog-post">
-                    <a href="blog/web-dev-2024.html" class="post-link">
-                        <h2>Web Development Best Practices in 2024</h2>
+                <!-- Regular Posts -->
+                <article class="blog-post" data-category="tech" data-date="2024-01-10">
+                    <div class="post-image">
+                        <div class="post-category">Tech</div>
+                        <div class="post-date">Jan 10, 2024</div>
+                    </div>
+                    <div class="post-content">
+                        <h3>Web Development Best Practices in 2024</h3>
                         <p class="post-excerpt">
                             Exploring the latest trends and best practices in web development, from performance optimization to modern frameworks.
                         </p>
-                    </a>
+                        <div class="post-meta">
+                            <span class="read-time">
+                                <i class="fas fa-clock"></i>
+                                3 min read
+                            </span>
+                            <span class="post-tags">
+                                <span class="tag">Web Dev</span>
+                                <span class="tag">JavaScript</span>
+                            </span>
+                        </div>
+                        <a href="#" class="read-more">
+                            Read More
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </article>
 
-                <article class="blog-post">
-                    <a href="blog/llm-software-dev.html" class="post-link">
-                        <h2>The Future of LLMs in Software Development</h2>
+                <article class="blog-post" data-category="ai" data-date="2024-01-05">
+                    <div class="post-image">
+                        <div class="post-category">AI</div>
+                        <div class="post-date">Jan 5, 2024</div>
+                    </div>
+                    <div class="post-content">
+                        <h3>The Future of LLMs in Software Development</h3>
                         <p class="post-excerpt">
                             How Large Language Models are revolutionizing software development and what developers need to know.
                         </p>
-                    </a>
+                        <div class="post-meta">
+                            <span class="read-time">
+                                <i class="fas fa-clock"></i>
+                                4 min read
+                            </span>
+                            <span class="post-tags">
+                                <span class="tag">LLM</span>
+                                <span class="tag">AI</span>
+                                <span class="tag">Coding</span>
+                            </span>
+                        </div>
+                        <a href="#" class="read-more">
+                            Read More
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </article>
+
+                <article class="blog-post" data-category="tech" data-date="2023-12-28">
+                    <div class="post-image">
+                        <div class="post-category">Tech</div>
+                        <div class="post-date">Dec 28, 2023</div>
+                    </div>
+                    <div class="post-content">
+                        <h3>Building Modern APIs with Node.js</h3>
+                        <p class="post-excerpt">
+                            A deep dive into creating scalable and maintainable APIs using Node.js, Express, and modern best practices.
+                        </p>
+                        <div class="post-meta">
+                            <span class="read-time">
+                                <i class="fas fa-clock"></i>
+                                6 min read
+                            </span>
+                            <span class="post-tags">
+                                <span class="tag">Node.js</span>
+                                <span class="tag">API</span>
+                                <span class="tag">Backend</span>
+                            </span>
+                        </div>
+                        <a href="#" class="read-more">
+                            Read More
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="blog-post" data-category="tech" data-date="2023-12-20">
+                    <div class="post-image">
+                        <div class="post-category">Tech</div>
+                        <div class="post-date">Dec 20, 2023</div>
+                    </div>
+                    <div class="post-content">
+                        <h3>CSS Grid vs Flexbox: When to Use What</h3>
+                        <p class="post-excerpt">
+                            Understanding the differences between CSS Grid and Flexbox, and choosing the right tool for your layout needs.
+                        </p>
+                        <div class="post-meta">
+                            <span class="read-time">
+                                <i class="fas fa-clock"></i>
+                                4 min read
+                            </span>
+                            <span class="post-tags">
+                                <span class="tag">CSS</span>
+                                <span class="tag">Layout</span>
+                                <span class="tag">Frontend</span>
+                            </span>
+                        </div>
+                        <a href="#" class="read-more">
+                            Read More
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="blog-post" data-category="projects" data-date="2023-12-15">
+                    <div class="post-image">
+                        <div class="post-category">Projects</div>
+                        <div class="post-date">Dec 15, 2023</div>
+                    </div>
+                    <div class="post-content">
+                        <h3>Building My Personal Portfolio</h3>
+                        <p class="post-excerpt">
+                            The journey of creating this portfolio website, from design decisions to implementation challenges and lessons learned.
+                        </p>
+                        <div class="post-meta">
+                            <span class="read-time">
+                                <i class="fas fa-clock"></i>
+                                5 min read
+                            </span>
+                            <span class="post-tags">
+                                <span class="tag">Portfolio</span>
+                                <span class="tag">Design</span>
+                                <span class="tag">Web Dev</span>
+                            </span>
+                        </div>
+                        <a href="#" class="read-more">
+                            Read More
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="empty-state" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No posts found</h3>
+                <p>Try adjusting your search or filter criteria</p>
             </div>
         </section>
     </main>
@@ -246,6 +449,137 @@
         function toggleSpotify() {
             const widget = document.getElementById('spotifyWidget');
             widget.classList.toggle('active');
+        }
+
+        // Blog Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeBlog();
+        });
+
+        function initializeBlog() {
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            const blogPosts = document.querySelectorAll('.blog-post');
+            const searchInput = document.getElementById('blog-search');
+            const clearSearch = document.getElementById('clear-search');
+            const emptyState = document.getElementById('empty-state');
+            const blogGrid = document.getElementById('blog-grid');
+
+            // Category filtering
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    
+                    // Update active tab
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter posts
+                    filterPosts(category, searchInput.value);
+                });
+            });
+
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const activeCategory = document.querySelector('.category-tab.active').dataset.category;
+                
+                // Show/hide clear button
+                clearSearch.style.display = searchTerm ? 'block' : 'none';
+                
+                // Filter posts
+                filterPosts(activeCategory, searchTerm);
+            });
+
+            // Clear search
+            clearSearch.addEventListener('click', function() {
+                searchInput.value = '';
+                this.style.display = 'none';
+                const activeCategory = document.querySelector('.category-tab.active').dataset.category;
+                filterPosts(activeCategory, '');
+                searchInput.focus();
+            });
+
+            // Filter posts function
+            function filterPosts(category, searchTerm) {
+                let visibleCount = 0;
+                
+                blogPosts.forEach(post => {
+                    const postCategory = post.dataset.category;
+                    const postTitle = post.querySelector('h2, h3').textContent.toLowerCase();
+                    const postExcerpt = post.querySelector('.post-excerpt').textContent.toLowerCase();
+                    const postTags = Array.from(post.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
+                    
+                    // Category filter
+                    const categoryMatch = category === 'all' || postCategory === category;
+                    
+                    // Search filter
+                    const searchMatch = !searchTerm || 
+                        postTitle.includes(searchTerm) || 
+                        postExcerpt.includes(searchTerm) ||
+                        postTags.some(tag => tag.includes(searchTerm));
+                    
+                    if (categoryMatch && searchMatch) {
+                        post.style.display = 'block';
+                        post.style.animation = `fadeInUp 0.5s ease ${visibleCount * 0.1}s both`;
+                        visibleCount++;
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+                
+                // Show/hide empty state
+                if (visibleCount === 0) {
+                    emptyState.style.display = 'block';
+                    blogGrid.style.display = 'grid';
+                } else {
+                    emptyState.style.display = 'none';
+                    blogGrid.style.display = 'grid';
+                }
+            }
+
+            // Sort posts by date (newest first)
+            const sortedPosts = Array.from(blogPosts).sort((a, b) => {
+                const dateA = new Date(a.dataset.date);
+                const dateB = new Date(b.dataset.date);
+                return dateB - dateA;
+            });
+
+            // Reorder posts in DOM
+            sortedPosts.forEach(post => {
+                blogGrid.appendChild(post);
+            });
+
+            // Update post counts
+            updatePostCounts();
+        }
+
+        function updatePostCounts() {
+            const posts = document.querySelectorAll('.blog-post');
+            const categories = {};
+            let totalPosts = posts.length;
+
+            // Count posts by category
+            posts.forEach(post => {
+                const category = post.dataset.category;
+                categories[category] = (categories[category] || 0) + 1;
+            });
+
+            // Update total count
+            document.getElementById('post-count').textContent = totalPosts;
+            document.getElementById('category-count').textContent = Object.keys(categories).length;
+
+            // Update category tab counts
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                const category = tab.dataset.category;
+                const countElement = tab.querySelector('.count');
+                if (countElement) {
+                    if (category === 'all') {
+                        countElement.textContent = totalPosts;
+                    } else {
+                        countElement.textContent = categories[category] || 0;
+                    }
+                }
+            });
         }
     </script>
     
