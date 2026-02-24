@@ -1,19 +1,15 @@
-# Aryan Sharma - Personal Portfolio Website
+# Aryan Sharma's Portfolio
 
-This repository contains the code for my personal portfolio website, showcasing my skills, projects, and professional setup.
+A modern React single-page application built with Vite, React, and React Router v6. It features a high-end dark editorial theme, Framer Motion animations, and optimal deployment configurations for GitHub Pages.
 
-## About Me
+## Setup & Deployment Instructions
 
-I'm Aryan Sharma, a Tech Enthusiast, AI & Software Developer, and IT Professional based in Dhanbad, Jharkhand, India. I'm currently pursuing a B.Tech in IT from Asansol Engineering College and am passionate about Coding, LLMs & Generative AI.
+- `npm install` to install deps
+- `npm run dev` to run locally
+- `npm run deploy` to build and push to GitHub Pages
 
-## Website Content
-
-*   **Homepage (`index.html`):** Introduction, technical skills, and projects.
-*   **Contact (`contact.html`):** Ways to get in touch.
-*   **Setup (`setup.html`):** Details about my hardware, software, and development tools.
-
-## View Live Site
-
-You can view the live website hosted on GitHub Pages:
-[https://aryanjohnsharma.github.io/](https://aryanjohnsharma.github.io/)
-
+## Tech Stack
+- **Vite + React 18**
+- **React Router v6**
+- **Framer Motion**
+- **Lucide Icons**
