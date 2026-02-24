@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageWrapper from './PageWrapper';
 
@@ -58,6 +58,13 @@ const SectionHeader = ({ title }) => {
 
 const Skills = () => {
     const [activeFilter, setActiveFilter] = useState('All');
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        // Simulate loading for the skeleton microinteraction
+        const timer = setTimeout(() => setIsLoading(false), 800);
+        return () => clearTimeout(timer);
+    }, []);
 
     const filteredSkills = skillsData.filter(skill =>
         activeFilter === 'All' ? true : skill.category === activeFilter
@@ -99,33 +106,51 @@ const Skills = () => {
                         width: '100%'
                     }}
                 >
-                    <AnimatePresence>
-                        {filteredSkills.map(skill => (
-                            <motion.div
-                                layout
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ duration: 0.3 }}
-                                key={skill.id}
-                                style={{
-                                    padding: '2.5rem 1.5rem',
-                                    backgroundColor: 'var(--bg-surface)',
-                                    border: '1px solid rgba(255,255,255,0.05)',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    textAlign: 'center',
-                                    color: 'var(--text-body)',
-                                    fontWeight: 400,
-                                    fontFamily: 'var(--font-sans)',
-                                    borderRadius: '4px',
-                                    letterSpacing: '0.5px'
-                                }}
-                            >
-                                {skill.name}
-                            </motion.div>
-                        ))}
+                    <AnimatePresence mode="popLayout">
+                        {isLoading ? (
+                            // Skeleton Loading State
+                            Array.from({ length: 12 }).map((_, i) => (
+                                <motion.div
+                                    key={`skeleton-${i}`}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    className="glass-panel shimmer-effect"
+                                    style={{
+                                        padding: '2.5rem 1.5rem',
+                                        height: '100px',
+                                        borderRadius: '4px'
+                                    }}
+                                />
+                            ))
+                        ) : (
+                            filteredSkills.map(skill => (
+                                <motion.div
+                                    layout
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.9 }}
+                                    transition={{ duration: 0.3 }}
+                                    key={skill.id}
+                                    className="glass-panel"
+                                    style={{
+                                        padding: '2.5rem 1.5rem',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        textAlign: 'center',
+                                        color: 'var(--text-primary)',
+                                        fontWeight: 500,
+                                        fontFamily: 'var(--font-sans)',
+                                        borderRadius: '4px',
+                                        letterSpacing: '0.5px',
+                                        cursor: 'default'
+                                    }}
+                                >
+                                    {skill.name}
+                                </motion.div>
+                            ))
+                        )}
                     </AnimatePresence>
                 </motion.div>
             </div>

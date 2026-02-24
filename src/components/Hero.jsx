@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, FileText } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Mail, FileText, Code, Cpu, Sparkles } from 'lucide-react';
 import PageWrapper from './PageWrapper';
 
 const MagneticButton = ({ children, href, primary, onClick }) => {
@@ -56,6 +56,11 @@ const MagneticButton = ({ children, href, primary, onClick }) => {
 };
 
 const Hero = () => {
+    // Scroll parallax setup
+    const { scrollY } = useScroll();
+    const textY = useTransform(scrollY, [0, 500], [0, 150]);
+    const imageY = useTransform(scrollY, [0, 500], [0, 50]);
+
     const container = {
         hidden: { opacity: 0 },
         show: {
@@ -72,17 +77,24 @@ const Hero = () => {
     return (
         <PageWrapper>
             <div style={{
+                position: 'relative',
                 minHeight: '100vh',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 flexWrap: 'wrap-reverse',
                 gap: '4rem',
-                paddingTop: '5rem'
+                paddingTop: '5rem',
+                overflow: 'hidden'
             }}>
 
+                {/* Floating Decorative Icons (Background) */}
+                <Code className="floating-icon" size={120} style={{ position: 'absolute', top: '15%', left: '-5%', zIndex: 0, opacity: 0.05 }} />
+                <Cpu className="floating-icon" size={80} style={{ position: 'absolute', bottom: '20%', left: '40%', zIndex: 0, animationDelay: '1s' }} />
+                <Sparkles className="floating-icon" size={100} style={{ position: 'absolute', top: '25%', right: '10%', zIndex: 0, animationDelay: '2s', opacity: 0.05 }} />
+
                 {/* Left Side: Text Content */}
-                <motion.div variants={container} initial="hidden" animate="show" style={{ flex: '1 1 500px' }}>
+                <motion.div variants={container} initial="hidden" animate="show" style={{ flex: '1 1 500px', y: textY, position: 'relative', zIndex: 1 }}>
                     <motion.div variants={item} style={{
                         fontFamily: 'var(--font-mono)',
                         fontSize: '0.9rem',
@@ -148,7 +160,7 @@ const Hero = () => {
                     initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
                     animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
                     transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    style={{ flex: '1 1 400px', display: 'flex', justifyContent: 'center' }}
+                    style={{ flex: '1 1 400px', display: 'flex', justifyContent: 'center', y: imageY, position: 'relative', zIndex: 1 }}
                 >
                     <div style={{
                         position: 'relative',
