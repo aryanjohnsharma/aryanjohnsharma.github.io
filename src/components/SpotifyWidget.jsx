@@ -13,23 +13,24 @@ const SpotifyWidget = () => {
                 whileTap={{ scale: 0.9 }}
                 style={{
                     position: 'fixed',
-                    bottom: '2rem',
-                    right: '2rem',
-                    width: '50px',
-                    height: '50px',
-                    borderRadius: '50%',
+                    bottom: '1.5rem',
+                    right: '1.5rem',
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '0',
                     backgroundColor: 'var(--bg-surface)',
                     color: 'var(--accent)',
-                    border: '1px solid rgba(255,255,255,0.1)',
+                    border: '1px solid var(--bg-elevated)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     cursor: 'pointer',
                     zIndex: 1000,
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)'
+                    boxShadow: '0 0 15px rgba(255, 106, 0, 0.1)',
+                    transition: 'all 0.3s ease',
                 }}
             >
-                <Music size={20} />
+                <Music size={18} />
             </motion.button>
 
             <AnimatePresence>
@@ -40,19 +41,21 @@ const SpotifyWidget = () => {
                         exit={{ opacity: 0, y: 20, scale: 0.9 }}
                         style={{
                             position: 'fixed',
-                            bottom: '5.5rem',
-                            right: '2rem',
+                            bottom: '4.5rem',
+                            right: '1rem',
+                            left: 'auto',
                             zIndex: 999,
-                            borderRadius: '8px',
                             overflow: 'hidden',
-                            boxShadow: '0 8px 30px rgba(0,0,0,0.6)'
+                            border: '1px solid var(--bg-elevated)',
+                            boxShadow: '0 8px 40px rgba(0,0,0,0.8)',
+                            maxWidth: 'calc(100vw - 2rem)',
                         }}
                     >
                         <a href="https://open.spotify.com/user/r95f1qecgkdxt73wiyorgokf2" target="_blank" rel="noopener noreferrer">
                             <img
                                 src="https://spotify-recently-played-readme.vercel.app/api?user=r95f1qecgkdxt73wiyorgokf2&count=7"
                                 alt="Spotify recently played"
-                                style={{ display: 'block', maxWidth: '300px' }}
+                                style={{ display: 'block', maxWidth: '100%', width: '300px' }}
                             />
                         </a>
                     </motion.div>

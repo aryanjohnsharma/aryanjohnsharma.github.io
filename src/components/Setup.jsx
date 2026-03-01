@@ -10,24 +10,25 @@ const SectionHeader = ({ title }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            style={{ marginBottom: '3rem' }}
+            style={{ marginBottom: '2rem' }}
         >
             <h2 style={{
-                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                fontSize: 'clamp(2rem, 5vw, 4rem)',
                 color: 'var(--text-primary)',
-                letterSpacing: '-0.02em',
+                letterSpacing: '-0.03em',
                 display: 'inline-block',
-                position: 'relative'
+                position: 'relative',
+                fontWeight: 700,
             }}>
                 {title}
                 <div style={{
                     position: 'absolute',
-                    bottom: '10px',
-                    left: '-20px',
-                    right: '-20px',
-                    height: '1px',
+                    bottom: '8px',
+                    left: '-10px',
+                    right: '-10px',
+                    height: '2px',
                     backgroundColor: 'var(--accent)',
-                    opacity: 0.5,
+                    opacity: 0.6,
                     zIndex: -1
                 }} />
             </h2>
@@ -35,7 +36,7 @@ const SectionHeader = ({ title }) => {
     );
 };
 
-const SetupCard = ({ title, icon: Icon, items, delay, isLoading }) => {
+const SetupCard = ({ title, icon: Icon, items, delay, isLoading, isMobile }) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -44,34 +45,38 @@ const SetupCard = ({ title, icon: Icon, items, delay, isLoading }) => {
             transition={{ duration: 0.5, delay }}
             className="glass-panel"
             style={{
-                padding: '2.5rem',
+                padding: isMobile ? '1.5rem' : '2.5rem',
                 display: 'flex',
                 flexDirection: 'column'
             }}
         >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', color: 'var(--text-primary)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.2rem' }}>
                 {isLoading ? (
-                    <div className="shimmer-effect" style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.1)' }} />
+                    <div className="shimmer-effect" style={{ width: '22px', height: '22px', backgroundColor: 'rgba(255,106,0,0.1)', position: 'relative', overflow: 'hidden' }} />
                 ) : (
-                    <Icon size={24} color="var(--accent)" />
+                    <Icon size={isMobile ? 18 : 22} color="var(--accent)" />
                 )}
                 {isLoading ? (
-                    <div className="shimmer-effect" style={{ width: '120px', height: '24px', borderRadius: '4px', backgroundColor: 'rgba(255,255,255,0.1)' }} />
+                    <div className="shimmer-effect" style={{ width: '100px', height: '22px', backgroundColor: 'rgba(255,106,0,0.05)', position: 'relative', overflow: 'hidden' }} />
                 ) : (
-                    <h3 style={{ fontSize: '1.5rem', fontWeight: 500, fontFamily: 'var(--font-serif)' }}>{title}</h3>
+                    <h3 style={{ fontSize: isMobile ? '1.1rem' : '1.3rem', fontWeight: 600, fontFamily: 'var(--font-sans)', color: 'var(--text-primary)' }}>
+                        <span style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', marginRight: '6px' }}>//</span>
+                        {title}
+                    </h3>
                 )}
             </div>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-body)' }}>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem', color: 'var(--text-body)' }}>
                 {isLoading ? (
                     Array.from({ length: 4 }).map((_, i) => (
-                        <li key={i} className="shimmer-effect" style={{ width: '100%', height: '20px', borderRadius: '4px', backgroundColor: 'rgba(255,255,255,0.05)' }} />
+                        <li key={i} className="shimmer-effect" style={{ width: '100%', height: '18px', backgroundColor: 'rgba(255,255,255,0.03)', position: 'relative', overflow: 'hidden' }} />
                     ))
                 ) : (
                     items.map((item, i) => (
-                        <li key={i} style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', lineHeight: 1.5 }}>
+                        <li key={i} style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', lineHeight: 1.5, fontSize: isMobile ? '0.85rem' : '0.95rem' }}>
                             <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>{item.name}:</span>
                             {item.link ? (
-                                <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-body)', textDecoration: 'underline', textDecorationColor: 'rgba(255,255,255,0.2)', textUnderlineOffset: '3px' }}>
+                                <a href={item.link} target="_blank" rel="noopener noreferrer"
+                                    style={{ color: 'var(--text-body)', textDecoration: 'underline', textDecorationColor: 'rgba(255,106,0,0.3)', textUnderlineOffset: '3px', transition: 'color 0.2s' }}>
                                     {item.desc}
                                 </a>
                             ) : (
@@ -87,11 +92,20 @@ const SetupCard = ({ title, icon: Icon, items, delay, isLoading }) => {
 
 const Setup = () => {
     const [isLoading, setIsLoading] = useState(true);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const check = () => setIsMobile(window.innerWidth <= 768);
+        check();
+        window.addEventListener('resize', check);
+        return () => window.removeEventListener('resize', check);
+    }, []);
 
     useEffect(() => {
         const timer = setTimeout(() => setIsLoading(false), 800);
         return () => clearTimeout(timer);
     }, []);
+
     const hardware = [
         { name: 'Laptop', desc: 'MSI Alpha 15 (B5EX)', link: 'https://www.msi.com/Laptop/Alpha-15-B5EX/Specification' },
         { name: 'Primary Phone', desc: 'Nothing Phone (3a)', link: 'https://in.nothing.tech/products/phone-3a' },
@@ -134,23 +148,48 @@ const Setup = () => {
 
     return (
         <PageWrapper>
-            <div style={{ padding: '8rem 0', minHeight: '100vh', width: '100%' }}>
+            <div style={{
+                paddingTop: isMobile ? '6rem' : '8rem',
+                paddingBottom: '4rem',
+                minHeight: '100vh',
+                width: '100%'
+            }}>
                 <SectionHeader title="My Setup." />
-                <div style={{ marginBottom: '2rem', color: 'var(--text-body)', fontSize: '1.2rem', maxWidth: '600px' }}>
-                    The tools and gear that power my work
+                <div style={{
+                    marginBottom: '1.5rem',
+                    maxWidth: '600px',
+                    fontFamily: 'var(--font-mono)',
+                    letterSpacing: '0.5px',
+                    lineHeight: 1.6,
+                }}>
+                    <span style={{
+                        fontSize: isMobile ? '1rem' : '1.15rem',
+                        color: 'var(--text-body)',
+                        fontWeight: 500,
+                    }}>
+                        Hardware <span style={{ color: 'var(--accent)', fontWeight: 700 }}>&amp;&amp;</span> software
+                    </span>
+                    <br />
+                    <span style={{
+                        fontSize: isMobile ? '0.85rem' : '0.95rem',
+                        color: 'var(--text-muted)',
+                        fontStyle: 'italic',
+                    }}>
+                        I keep in my toolbox.
+                    </span>
                 </div>
 
                 <AnimatePresence mode="popLayout">
                     <div style={{
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                        gap: '2rem',
-                        marginTop: '3rem'
+                        gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(320px, 1fr))',
+                        gap: '1rem',
+                        marginTop: '2rem'
                     }}>
-                        <SetupCard title="Hardware" icon={Monitor} items={hardware} delay={0.1} isLoading={isLoading} />
-                        <SetupCard title="Dev Tools" icon={Terminal} items={devTools} delay={0.2} isLoading={isLoading} />
-                        <SetupCard title="Audio Gear" icon={Headphones} items={audio} delay={0.3} isLoading={isLoading} />
-                        <SetupCard title="Creative Tools" icon={Palette} items={creative} delay={0.4} isLoading={isLoading} />
+                        <SetupCard title="Hardware" icon={Monitor} items={hardware} delay={0.1} isLoading={isLoading} isMobile={isMobile} />
+                        <SetupCard title="Dev Tools" icon={Terminal} items={devTools} delay={0.2} isLoading={isLoading} isMobile={isMobile} />
+                        <SetupCard title="Audio Gear" icon={Headphones} items={audio} delay={0.3} isLoading={isLoading} isMobile={isMobile} />
+                        <SetupCard title="Creative Tools" icon={Palette} items={creative} delay={0.4} isLoading={isLoading} isMobile={isMobile} />
                     </div>
                 </AnimatePresence>
             </div>

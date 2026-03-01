@@ -1,11 +1,17 @@
+/* ========================================
+   AMOLED BLACK & ORANGE — Global Styles
+   ======================================== */
+
 :root {
-  --bg-base: #0a0a0f;
-  --bg-surface: #12121a;
+  --bg-base: #000000;
+  --bg-surface: #0a0a0a;
+  --bg-elevated: #111111;
   --text-primary: #ffffff;
-  --text-body: #a0a0a0;
-  --accent: #f5a623;
-  --font-serif: 'Playfair Display', serif;
-  --font-hero: 'Fira Code', monospace;
+  --text-body: #888888;
+  --text-muted: #555555;
+  --accent: #FF6A00;
+  --accent-dim: rgba(255, 106, 0, 0.2);
+  --accent-glow: rgba(255, 106, 0, 0.15);
   --font-sans: 'Space Grotesk', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
@@ -14,6 +20,35 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+/* Selection */
+::selection {
+  background: var(--accent);
+  color: #000000;
+}
+
+::-moz-selection {
+  background: var(--accent);
+  color: #000000;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff8533;
 }
 
 body {
@@ -27,7 +62,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Subtle ambient background noise */
+/* Subtle dot-grid background */
 body::before {
   content: "";
   position: fixed;
@@ -37,8 +72,9 @@ body::before {
   height: 100vh;
   pointer-events: none;
   z-index: -1;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  background-image: radial-gradient(circle, rgba(255, 106, 0, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 h1,
@@ -48,8 +84,8 @@ h4,
 h5,
 h6 {
   color: var(--text-primary);
-  font-family: var(--font-serif);
-  font-weight: 500;
+  font-family: var(--font-sans);
+  font-weight: 600;
 }
 
 a {
@@ -82,28 +118,29 @@ main {
   width: 100%;
 }
 
-/* Premium Aesthetic Additions */
+/* ========================================
+   CARD SYSTEM — Brutalist dark panels
+   ======================================== */
 
 .glass-panel {
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-elevated);
+  border-top: 2px solid var(--accent);
+  border-radius: 0;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
 .glass-panel:hover {
-  border-color: rgba(245, 166, 35, 0.3);
-  /* Accent glow */
-  box-shadow: 0 8px 32px rgba(245, 166, 35, 0.05);
+  border-color: var(--accent);
+  box-shadow: 0 0 30px var(--accent-glow);
   transform: translateY(-2px);
 }
 
-/* Microinteraction Keyframes */
+/* ========================================
+   ANIMATIONS
+   ======================================== */
 
 @keyframes shimmer {
   0% {
@@ -124,7 +161,7 @@ main {
   height: 100%;
   background: linear-gradient(90deg,
       transparent,
-      rgba(255, 255, 255, 0.08),
+      rgba(255, 106, 0, 0.06),
       transparent);
   animation: shimmer 2s infinite ease-in-out;
   pointer-events: none;
@@ -132,20 +169,100 @@ main {
 
 @keyframes float {
   0% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translateY(0px);
   }
 
   50% {
-    transform: translateY(-10px) rotate(5deg);
+    transform: translateY(-8px);
   }
 
   100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translateY(0px);
   }
 }
 
 .floating-icon {
   animation: float 6s ease-in-out infinite;
-  opacity: 0.15;
-  color: var(--text-primary);
+  opacity: 0.08;
+  color: var(--accent);
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Orange glow utility */
+.orange-glow {
+  box-shadow: 0 0 20px var(--accent-glow),
+    0 0 60px rgba(255, 106, 0, 0.05);
+}
+
+/* ========================================
+   CURSOR TRAIL
+   ======================================== */
+
+.cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s;
+  mix-blend-mode: screen;
+}
+
+body:hover .cursor-dot {
+  opacity: 0.6;
+}
+
+/* ========================================
+   RESPONSIVE — Tablet
+   ======================================== */
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 0 1.25rem;
+  }
+
+  /* Navbar: show hamburger, hide desktop links */
+  .nav-desktop {
+    display: none !important;
+  }
+
+  .nav-mobile-toggle {
+    display: block !important;
+  }
+}
+
+/* ========================================
+   RESPONSIVE — Mobile
+   ======================================== */
+
+@media (max-width: 480px) {
+  .page-container {
+    padding: 0 1rem;
+  }
 }

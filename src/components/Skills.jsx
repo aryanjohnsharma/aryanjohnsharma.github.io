@@ -31,24 +31,25 @@ const SectionHeader = ({ title }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            style={{ marginBottom: '3rem' }}
+            style={{ marginBottom: '2rem' }}
         >
             <h2 style={{
-                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                fontSize: 'clamp(2rem, 5vw, 4rem)',
                 color: 'var(--text-primary)',
-                letterSpacing: '-0.02em',
+                letterSpacing: '-0.03em',
                 display: 'inline-block',
-                position: 'relative'
+                position: 'relative',
+                fontWeight: 700,
             }}>
                 {title}
                 <div style={{
                     position: 'absolute',
-                    bottom: '10px',
-                    left: '-20px',
-                    right: '-20px',
-                    height: '1px',
+                    bottom: '8px',
+                    left: '-10px',
+                    right: '-10px',
+                    height: '2px',
                     backgroundColor: 'var(--accent)',
-                    opacity: 0.5,
+                    opacity: 0.6,
                     zIndex: -1
                 }} />
             </h2>
@@ -59,9 +60,16 @@ const SectionHeader = ({ title }) => {
 const Skills = () => {
     const [activeFilter, setActiveFilter] = useState('All');
     const [isLoading, setIsLoading] = useState(true);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        // Simulate loading for the skeleton microinteraction
+        const check = () => setIsMobile(window.innerWidth <= 768);
+        check();
+        window.addEventListener('resize', check);
+        return () => window.removeEventListener('resize', check);
+    }, []);
+
+    useEffect(() => {
         const timer = setTimeout(() => setIsLoading(false), 800);
         return () => clearTimeout(timer);
     }, []);
@@ -72,24 +80,38 @@ const Skills = () => {
 
     return (
         <PageWrapper>
-            <div style={{ padding: '8rem 0', minHeight: '100vh', width: '100%' }}>
+            <div style={{
+                paddingTop: isMobile ? '6rem' : '8rem',
+                paddingBottom: '4rem',
+                minHeight: '100vh',
+                width: '100%'
+            }}>
                 <SectionHeader title="Skills." />
 
-                <div style={{ marginBottom: '4rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                {/* Filter buttons — scrollable on mobile */}
+                <div style={{
+                    marginBottom: '3rem',
+                    display: 'flex',
+                    gap: '0.5rem',
+                    flexWrap: 'wrap',
+                }}>
                     {categories.map(cat => (
                         <button
                             key={cat}
                             onClick={() => setActiveFilter(cat)}
                             style={{
-                                padding: '0.8rem 1.5rem',
-                                backgroundColor: activeFilter === cat ? 'var(--text-primary)' : 'transparent',
-                                color: activeFilter === cat ? 'var(--bg-base)' : 'var(--text-primary)',
-                                border: `1px solid ${activeFilter === cat ? 'var(--text-primary)' : 'rgba(255,255,255,0.1)'}`,
-                                borderRadius: '30px',
+                                padding: isMobile ? '0.5rem 1rem' : '0.7rem 1.5rem',
+                                backgroundColor: activeFilter === cat ? 'var(--accent)' : 'transparent',
+                                color: activeFilter === cat ? '#000000' : 'var(--text-muted)',
+                                border: activeFilter === cat ? '1px solid var(--accent)' : '1px solid var(--bg-elevated)',
+                                borderRadius: '0',
                                 fontFamily: 'var(--font-mono)',
-                                fontSize: '0.9rem',
+                                fontSize: isMobile ? '0.7rem' : '0.8rem',
+                                letterSpacing: '1px',
+                                textTransform: 'uppercase',
                                 cursor: 'pointer',
-                                transition: 'all 0.3s ease'
+                                transition: 'all 0.3s ease',
+                                fontWeight: activeFilter === cat ? 600 : 400,
                             }}
                         >
                             {cat}
@@ -101,25 +123,29 @@ const Skills = () => {
                     layout
                     style={{
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
-                        gap: '1.5rem',
-                        width: '100%'
+                        gridTemplateColumns: isMobile
+                            ? 'repeat(2, 1fr)'
+                            : 'repeat(auto-fill, minmax(160px, 1fr))',
+                        gap: '1px',
+                        width: '100%',
+                        backgroundColor: 'var(--bg-elevated)',
                     }}
                 >
                     <AnimatePresence mode="popLayout">
                         {isLoading ? (
-                            // Skeleton Loading State
-                            Array.from({ length: 12 }).map((_, i) => (
+                            Array.from({ length: isMobile ? 6 : 12 }).map((_, i) => (
                                 <motion.div
                                     key={`skeleton-${i}`}
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
-                                    className="glass-panel shimmer-effect"
+                                    className="shimmer-effect"
                                     style={{
-                                        padding: '2.5rem 1.5rem',
-                                        height: '100px',
-                                        borderRadius: '4px'
+                                        padding: isMobile ? '1.5rem 1rem' : '2.5rem 1.5rem',
+                                        height: isMobile ? '70px' : '100px',
+                                        backgroundColor: 'var(--bg-surface)',
+                                        position: 'relative',
+                                        overflow: 'hidden',
                                     }}
                                 />
                             ))
@@ -127,24 +153,26 @@ const Skills = () => {
                             filteredSkills.map(skill => (
                                 <motion.div
                                     layout
-                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    initial={{ opacity: 0, scale: 0.95 }}
                                     animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.9 }}
+                                    exit={{ opacity: 0, scale: 0.95 }}
                                     transition={{ duration: 0.3 }}
                                     key={skill.id}
-                                    className="glass-panel"
                                     style={{
-                                        padding: '2.5rem 1.5rem',
+                                        padding: isMobile ? '1.5rem 0.8rem' : '2.5rem 1.5rem',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         textAlign: 'center',
-                                        color: 'var(--text-primary)',
+                                        color: 'var(--text-body)',
                                         fontWeight: 500,
                                         fontFamily: 'var(--font-sans)',
-                                        borderRadius: '4px',
+                                        fontSize: isMobile ? '0.85rem' : '1rem',
                                         letterSpacing: '0.5px',
-                                        cursor: 'default'
+                                        cursor: 'default',
+                                        backgroundColor: 'var(--bg-surface)',
+                                        transition: 'all 0.3s ease',
+                                        borderLeft: '2px solid transparent',
                                     }}
                                 >
                                     {skill.name}
