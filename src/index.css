@@ -14,6 +14,26 @@
   --accent-glow: rgba(255, 106, 0, 0.15);
   --font-sans: 'Space Grotesk', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --nav-bg: rgba(255, 255, 255, 0.04);
+  --nav-border: rgba(255, 255, 255, 0.1);
+  --nav-shadow: rgba(0, 0, 0, 0.3);
+  --mobile-overlay-bg: rgba(0, 0, 0, 0.97);
+}
+
+[data-theme="light"] {
+  --bg-base: #f5f5f0;
+  --bg-surface: #ffffff;
+  --bg-elevated: #e8e8e3;
+  --text-primary: #111111;
+  --text-body: #444444;
+  --text-muted: #777777;
+  --accent: #e05500;
+  --accent-dim: rgba(224, 85, 0, 0.15);
+  --accent-glow: rgba(224, 85, 0, 0.1);
+  --nav-bg: rgba(255, 255, 255, 0.75);
+  --nav-border: rgba(0, 0, 0, 0.08);
+  --nav-shadow: rgba(0, 0, 0, 0.08);
+  --mobile-overlay-bg: rgba(245, 245, 240, 0.97);
 }
 
 * {
@@ -60,6 +80,7 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* Subtle dot-grid background */
@@ -86,6 +107,7 @@ h6 {
   color: var(--text-primary);
   font-family: var(--font-sans);
   font-weight: 600;
+  transition: color 0.4s ease;
 }
 
 a {
@@ -265,4 +287,81 @@ body:hover .cursor-dot {
   .page-container {
     padding: 0 1rem;
   }
+}
+
+/* ========================================
+   LIGHT MODE OVERRIDES
+   ======================================== */
+
+[data-theme="light"] ::selection {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+[data-theme="light"] ::-moz-selection {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+/* Softer scrollbar */
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #ccc;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: var(--bg-elevated);
+}
+
+/* Replace dot-grid with a lighter subtle pattern */
+[data-theme="light"] body::before {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
+}
+
+/* Glass panel for light mode */
+[data-theme="light"] .glass-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-elevated);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .glass-panel:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(224, 85, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Shimmer: warm light sweep */
+[data-theme="light"] .shimmer-effect::after {
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(224, 85, 0, 0.04),
+      transparent);
+}
+
+/* Cursor dot */
+[data-theme="light"] .cursor-dot {
+  background: var(--accent);
+  opacity: 0;
+}
+
+[data-theme="light"] body:hover .cursor-dot {
+  opacity: 0.4;
+}
+
+/* Orange glow: softer in light mode */
+[data-theme="light"] .orange-glow {
+  box-shadow: 0 0 15px rgba(224, 85, 0, 0.06),
+    0 0 40px rgba(224, 85, 0, 0.03);
+}
+
+/* Footer border */
+[data-theme="light"] footer {
+  border-top-color: var(--bg-elevated) !important;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
 }

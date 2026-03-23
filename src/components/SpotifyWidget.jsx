@@ -47,7 +47,7 @@ const SpotifyWidget = () => {
                             zIndex: 999,
                             overflow: 'hidden',
                             border: '1px solid var(--bg-elevated)',
-                            boxShadow: '0 8px 40px rgba(0,0,0,0.8)',
+                            boxShadow: '0 8px 40px rgba(0,0,0,0.15)',
                             maxWidth: 'calc(100vw - 2rem)',
                         }}
                     >

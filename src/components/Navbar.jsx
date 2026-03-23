@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import { Menu, X, Code2 } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
     const { scrollY } = useScroll();
@@ -42,14 +43,15 @@ const Navbar = () => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    background: 'rgba(255, 255, 255, 0.04)',
+                    background: 'var(--nav-bg)',
                     backdropFilter: 'blur(16px)',
                     WebkitBackdropFilter: 'blur(16px)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    border: '1px solid var(--nav-border)',
                     borderRadius: '50px',
                     zIndex: 1000,
                     padding: '0 1.5rem',
-                    boxShadow: '0 4px 30px rgba(0, 0, 0, 0.3)',
+                    boxShadow: '0 4px 30px var(--nav-shadow)',
+                    transition: 'background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease',
                 }}
             >
                 {/* Brand / Logo on left */}
@@ -85,7 +87,7 @@ const Navbar = () => {
                                 fontWeight: isActive ? 600 : 400,
                                 textTransform: 'uppercase',
                                 letterSpacing: '1.5px',
-                                color: isActive ? 'var(--accent)' : 'rgba(255, 255, 255, 0.55)',
+                                color: isActive ? 'var(--accent)' : 'var(--text-muted)',
                                 textDecoration: 'none',
                                 transition: 'color 0.2s ease',
                             })}
@@ -93,6 +95,7 @@ const Navbar = () => {
                             {label}
                         </NavLink>
                     ))}
+                    <ThemeToggle size={34} />
                 </div>
 
                 {/* Mobile Hamburger */}
@@ -125,7 +128,7 @@ const Navbar = () => {
                         style={{
                             position: 'fixed',
                             inset: 0,
-                            backgroundColor: 'rgba(0, 0, 0, 0.97)',
+                            backgroundColor: 'var(--mobile-overlay-bg)',
                             zIndex: 999,
                             display: 'flex',
                             flexDirection: 'column',
@@ -158,6 +161,13 @@ const Navbar = () => {
                                 </NavLink>
                             </motion.div>
                         ))}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: links.length * 0.08, duration: 0.3 }}
+                        >
+                            <ThemeToggle size={40} />
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>

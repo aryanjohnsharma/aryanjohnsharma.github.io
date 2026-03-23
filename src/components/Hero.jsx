@@ -124,12 +124,23 @@ const Hero = () => {
     const textY = useTransform(scrollY, [0, 500], [0, 100]);
     const imageY = useTransform(scrollY, [0, 500], [0, 40]);
     const [isMobile, setIsMobile] = useState(false);
+    const [isDark, setIsDark] = useState(
+        document.documentElement.getAttribute('data-theme') !== 'light'
+    );
 
     useEffect(() => {
         const check = () => setIsMobile(window.innerWidth <= 768);
         check();
         window.addEventListener('resize', check);
         return () => window.removeEventListener('resize', check);
+    }, []);
+
+    useEffect(() => {
+        const observer = new MutationObserver(() => {
+            setIsDark(document.documentElement.getAttribute('data-theme') !== 'light');
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+        return () => observer.disconnect();
     }, []);
 
     const container = {
@@ -198,7 +209,7 @@ const Hero = () => {
                                 style={{
                                     width: '100%', height: '100%', objectFit: 'cover',
                                     position: 'relative', zIndex: 1,
-                                    filter: 'grayscale(80%) contrast(1.2) brightness(0.9)',
+                                    filter: isDark ? 'grayscale(80%) contrast(1.2) brightness(0.9)' : 'grayscale(20%) contrast(1.05) brightness(1)',
                                 }}
                             />
                         </div>
@@ -243,9 +254,9 @@ const Hero = () => {
                         color: 'var(--text-primary)',
                         fontWeight: 700,
                     }}>
-                        <ShinyText text="Aryan" speed={3} color="#ffffff" shineColor="#FF6A00" spread={120} />
+                        <ShinyText text="Aryan" speed={3} color={isDark ? '#ffffff' : '#111111'} shineColor="#FF6A00" spread={120} />
                         <br />
-                        <ShinyText text="Sharma" speed={3} color="#FF6A00" shineColor="#ffffff" spread={120} />
+                        <ShinyText text="Sharma" speed={3} color="#FF6A00" shineColor={isDark ? '#ffffff' : '#111111'} spread={120} />
                     </motion.h1>
 
                     <motion.h2 variants={item} style={{
@@ -322,17 +333,17 @@ const Hero = () => {
                                 style={{
                                     width: '100%', height: '100%', objectFit: 'cover',
                                     position: 'relative', zIndex: 1,
-                                    filter: 'grayscale(80%) contrast(1.2) brightness(0.9)',
+                                    filter: isDark ? 'grayscale(80%) contrast(1.2) brightness(0.9)' : 'grayscale(20%) contrast(1.05) brightness(1)',
                                     transition: 'all 0.5s ease', cursor: 'pointer'
                                 }}
                                 onMouseOver={(e) => {
                                     e.currentTarget.style.filter = 'grayscale(0%) contrast(1.1) brightness(1)';
                                     e.currentTarget.previousSibling.style.transform = 'translate(8px, 8px)';
                                     e.currentTarget.previousSibling.style.opacity = '1';
-                                    e.currentTarget.previousSibling.style.boxShadow = '0 0 30px rgba(255,106,0,0.2)';
+                                    e.currentTarget.previousSibling.style.boxShadow = isDark ? '0 0 30px rgba(255,106,0,0.2)' : '0 0 20px rgba(224,85,0,0.12)';
                                 }}
                                 onMouseOut={(e) => {
-                                    e.currentTarget.style.filter = 'grayscale(80%) contrast(1.2) brightness(0.9)';
+                                    e.currentTarget.style.filter = isDark ? 'grayscale(80%) contrast(1.2) brightness(0.9)' : 'grayscale(20%) contrast(1.05) brightness(1)';
                                     e.currentTarget.previousSibling.style.transform = 'translate(0px, 0px)';
                                     e.currentTarget.previousSibling.style.opacity = '0.6';
                                     e.currentTarget.previousSibling.style.boxShadow = 'none';
