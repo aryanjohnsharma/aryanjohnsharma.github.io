@@ -17,7 +17,7 @@ const Footer = () => {
             letterSpacing: '1px',
             textTransform: 'uppercase',
         }}>
-            <p>© {new Date().getFullYear()} Aryan Sharma</p>
+            <p>Copyright © {new Date().getFullYear()} Aryan Sharma. All rights reserved.</p>
             <div style={{ display: 'flex', gap: '1.5rem' }}>
                 <a
                     href="https://github.com/aryanjohnsharma"
