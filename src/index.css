@@ -261,7 +261,162 @@ body:hover .cursor-dot {
 }
 
 /* ========================================
-   RESPONSIVE — Tablet
+   MOBILE FLOATING THEME TOGGLE
+   ======================================== */
+
+.mobile-theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 101;
+}
+
+/* ========================================
+   NAVBAR — Astro-portfolio style
+   ======================================== */
+
+.nav-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.main-nav {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background-color: transparent;
+  border: 1px solid transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition:
+    background-color 0.3s ease,
+    border-radius 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    backdrop-filter 0.3s ease;
+
+  /* Desktop: top */
+  top: 24px;
+  bottom: auto;
+  width: 80%;
+}
+
+.main-nav.scrolling {
+  background-color: var(--nav-bg);
+  border-color: var(--nav-border);
+  border-radius: 9999px;
+  box-shadow: 0 4px 30px var(--nav-shadow);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1.5rem;
+}
+
+/* Logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.nav-logo-img {
+  height: 34px;
+  width: auto;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.nav-logo:hover .nav-logo-img {
+  opacity: 1;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.nav-item {
+  flex: none;
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: color 0.2s ease;
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+/* Active indicator dot — desktop only */
+.nav-indicator {
+  display: none;
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-link.active .nav-indicator {
+  transform: translateY(-50%) scale(1);
+  opacity: 1;
+}
+
+.nav-link.active {
+  color: var(--text-primary) !important;
+  font-weight: 600;
+}
+
+/* Icon: hidden on desktop */
+.nav-icon {
+  display: none;
+}
+
+/* Desktop label inline */
+.nav-label {
+  display: inline-block;
+}
+
+/* Theme toggle item */
+.nav-theme-toggle {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+
+/* ========================================
+   RESPONSIVE — Tablet / Mobile
    ======================================== */
 
 @media (max-width: 768px) {
@@ -269,23 +424,104 @@ body:hover .cursor-dot {
     padding: 0 1.25rem;
   }
 
-  /* Navbar: show hamburger, hide desktop links */
-  .nav-desktop {
+  /* Bottom bar on mobile */
+  .main-nav {
+    top: auto !important;
+    bottom: 0;
+    left: 50%;
+    width: 100% !important;
+    border-radius: 1rem 1rem 0 0;
+    border-color: var(--nav-border);
+    background-color: var(--nav-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  .main-nav.scrolling {
+    border-radius: 1rem 1rem 0 0;
+    background-color: var(--nav-bg);
+  }
+
+  body {
+    padding-bottom: 80px;
+  }
+
+  .nav-inner {
+    padding: 0.6rem 0.5rem;
+  }
+
+  .nav-list {
+    width: 100%;
+    justify-content: space-around;
+    gap: 0;
+  }
+
+  .nav-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-link {
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+    gap: 3px;
+  }
+
+  /* Theme toggle handled as floating button on mobile */
+  .nav-theme-toggle {
     display: none !important;
   }
 
-  .nav-mobile-toggle {
-    display: block !important;
+  /* Show icons on mobile */
+  .nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: var(--white-icon, var(--text-muted));
+  }
+
+  .nav-link.active .nav-icon {
+    color: var(--accent);
+  }
+
+  /* Hide indicator dot on mobile */
+  .nav-indicator {
+    display: none !important;
+  }
+
+  /* Desktop indicator hidden on mobile */
+  @media (min-width: 768px) {
+    .nav-indicator {
+      display: block;
+    }
+  }
+}
+
+/* Desktop: show indicator dot */
+@media (min-width: 769px) {
+  .nav-indicator {
+    display: block;
+  }
+
+  .nav-icon {
+    display: none;
   }
 }
 
 /* ========================================
-   RESPONSIVE — Mobile
+   RESPONSIVE — Small Mobile
    ======================================== */
 
 @media (max-width: 480px) {
   .page-container {
     padding: 0 1rem;
+  }
+
+  .nav-link {
+    font-size: 0.6rem;
   }
 }
 

@@ -1,9 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Music } from 'lucide-react';
 
 const SpotifyWidget = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // On mobile, push above the bottom navbar
+    const bottomOffset = isMobile ? '6rem' : '1.5rem';
+    const popupBottom = isMobile ? '8.5rem' : '4.5rem';
 
     return (
         <>
@@ -13,7 +24,7 @@ const SpotifyWidget = () => {
                 whileTap={{ scale: 0.9 }}
                 style={{
                     position: 'fixed',
-                    bottom: '1.5rem',
+                    bottom: bottomOffset,
                     right: '1.5rem',
                     width: '44px',
                     height: '44px',
@@ -41,7 +52,7 @@ const SpotifyWidget = () => {
                         exit={{ opacity: 0, y: 20, scale: 0.9 }}
                         style={{
                             position: 'fixed',
-                            bottom: '4.5rem',
+                            bottom: popupBottom,
                             right: '1rem',
                             left: 'auto',
                             zIndex: 999,
