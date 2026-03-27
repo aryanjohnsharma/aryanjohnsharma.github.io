@@ -61,6 +61,89 @@ const AboutCard = ({ children, delay, colSpan, accent, className = "", style: ex
     );
 };
 
+const mapHTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    body {
+      background: #0b0b0c;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow: hidden;
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    .overlay {
+      position: absolute;
+      bottom: 12px;
+      left: 14px;
+      color: white;
+      font-size: 13px;
+      letter-spacing: 0.4px;
+      background: rgba(20,20,20,0.65);
+      padding: 7px 12px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.08);
+      z-index: 2;
+    }
+    .glow-marker {
+      width: 14px;
+      height: 14px;
+      background: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #4ade80, 0 0 20px #4ade80, 0 0 30px rgba(74,222,128,0.6);
+    }
+    .leaflet-control-attribution {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="overlay">Based in Dhanbad, India</div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const coords = [23.7957, 86.4304];
+    const map = L.map('map', {
+      zoomControl: false,
+      attributionControl: false,
+      dragging: false,
+      scrollWheelZoom: false,
+      doubleClickZoom: false,
+      boxZoom: false,
+      keyboard: false
+    }).setView(coords, 8);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      maxZoom: 19
+    }).addTo(map);
+    setTimeout(() => {
+      map.flyTo(coords, 11, { duration: 2 });
+    }, 400);
+    const glowIcon = L.divIcon({
+      className: '',
+      html: '<div class="glow-marker"></div>',
+      iconSize: [14, 14],
+      iconAnchor: [7, 7]
+    });
+    L.marker(coords, { icon: glowIcon }).addTo(map);
+  </script>
+</body>
+</html>`;
+
 const About = () => {
     const [isMobile, setIsMobile] = useState(false);
     useEffect(() => {
@@ -110,24 +193,20 @@ const About = () => {
                 </AboutCard>
 
                 {/* Location Card */}
-                <AboutCard delay={0.2}>
-                    <div style={{ position: 'relative', width: '50px', height: '50px', borderRadius: '50%', backgroundColor: 'rgba(255, 106, 0, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
-                        <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: 'var(--accent)', boxShadow: '0 0 20px var(--accent)' }} />
-                        <motion.div
-                            animate={{ scale: [1, 2.5], opacity: [0.8, 0] }}
-                            transition={{ repeat: Infinity, duration: 2, ease: "easeOut" }}
-                            style={{ position: 'absolute', width: '10px', height: '10px', borderRadius: '50%', backgroundColor: 'var(--accent)' }}
-                        />
-                    </div>
-                    <h3 style={{ fontSize: '1.3rem', marginBottom: '0.3rem', color: 'var(--text-primary)', textAlign: 'center', fontWeight: 600 }}>Based In</h3>
-                    <p style={{ color: 'var(--text-body)', fontFamily: 'var(--font-mono)', textAlign: 'center', fontSize: '0.85rem' }}>Dhanbad, JH, India</p>
+                <AboutCard delay={0.2} style={{ padding: 0, overflow: 'hidden', minHeight: '220px' }}>
+                    <iframe 
+                        srcDoc={mapHTML} 
+                        style={{ width: '100%', height: '100%', minHeight: '220px', border: 'none', display: 'block' }} 
+                        title="Location Map" 
+                        sandbox="allow-scripts allow-same-origin"
+                    />
                 </AboutCard>
 
                 {/* Philosophy Card */}
                 <AboutCard delay={0.3}>
                     <div style={{ width: '30px', height: '2px', backgroundColor: 'var(--accent)', marginBottom: '0.8rem' }} />
                     <h3 style={{ fontSize: 'clamp(1.2rem, 2vw, 1.8rem)', lineHeight: 1.3, color: 'var(--text-primary)', fontWeight: 600 }}>
-                        "I build things that live on the internet."
+                        "Figure it out, then build it. Usually in that order."
                     </h3>
                     <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', marginTop: '0.5rem', letterSpacing: '1px' }}>
                             // Philosophy
