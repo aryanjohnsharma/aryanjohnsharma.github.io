@@ -97,11 +97,14 @@ const About = () => {
                         lineHeight: 1.6,
                         color: 'var(--text-body)',
                     }}>
-                        <p style={{ marginBottom: '1rem' }}>
-                            I'm <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Aryan Sharma</strong>, a Tech Enthusiast, AI & Software Developer, and IT Professional.
+                        <p style={{ marginBottom: '1.2rem' }}>
+                            I'm <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Aryan Sharma</strong>, a final-year B.Tech IT student who builds things for the web.
+                        </p>
+                        <p style={{ marginBottom: '1.2rem', fontSize: 'clamp(0.9rem, 1.5vw, 1.2rem)' }}>
+                            Frontend is where I spend most of my time. Picking up full-stack MERN as I go, building projects that actually connect both ends.
                         </p>
                         <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.2rem)' }}>
-                            I'm currently pursuing a B.Tech in IT from Asansol Engineering College. I am deeply passionate about Engineering, Large Language Models (LLMs), Generative AI, and building highly scalable software solutions that don't just work, but feel incredible to use.
+                            Curious about how AI gets used in real products, not just talked about.
                         </p>
                     </div>
                 </AboutCard>

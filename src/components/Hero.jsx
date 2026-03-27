@@ -283,7 +283,7 @@ const Hero = () => {
                         flexWrap: 'wrap',
                     }}>
                         <span style={{ width: '20px', height: '1px', backgroundColor: 'var(--accent)', display: 'inline-block', flexShrink: 0 }} />
-                        <span>Tech Enthusiast | AI & Software Developer</span>
+                        <span>Tech Enthusiast. Full stack. Ships things.</span>
                         <motion.span
                             animate={{ opacity: [1, 0] }}
                             transition={{ repeat: Infinity, duration: 0.8 }}
