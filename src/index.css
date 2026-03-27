@@ -601,3 +601,8 @@ body:hover .cursor-dot {
   border-top-color: var(--bg-elevated) !important;
   transition: background-color 0.4s ease, border-color 0.4s ease;
 }
+
+/* Invert Logo in light mode */
+[data-theme="light"] .nav-logo-img {
+  filter: invert(1);
+}
