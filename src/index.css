@@ -606,3 +606,176 @@ body:hover .cursor-dot {
 [data-theme="light"] .nav-logo-img {
   filter: invert(1);
 }
+
+/* ========================================
+   FOOTER (Astro Portfolio Style)
+   ======================================== */
+
+.footer-container {
+  width: 100%;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--bg-elevated);
+  position: relative;
+  z-index: 10;
+  background-color: var(--bg-base);
+}
+
+.footer-content {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-col-socials {
+  align-items: center;
+  gap: 2.25rem;
+}
+
+@media (min-width: 1024px) {
+  .footer-col-socials {
+    align-items: flex-start;
+  }
+}
+
+.footer-social-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .footer-social-links {
+    gap: 2rem;
+  }
+}
+
+.footer-social-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+}
+
+.footer-social-icon {
+  color: var(--text-muted);
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-social-link:hover .footer-social-icon {
+  color: var(--text-primary);
+}
+
+.footer-col-tech {
+  align-items: center;
+}
+
+.footer-tech-stack {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 20rem;
+  padding: 1.5rem 0;
+}
+
+.footer-tech-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+@media (min-width: 1024px) {
+  .footer-tech-item {
+    justify-content: flex-start;
+  }
+}
+
+.footer-tech-desc {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-family: var(--font-mono);
+}
+
+.tech-icon {
+  opacity: 0.5;
+  color: var(--text-muted);
+}
+
+.footer-tech-name {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-family: var(--font-mono);
+}
+
+.footer-col-widget {
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .footer-col-widget {
+    align-items: flex-start;
+  }
+}
+
+.footer-spotify-widget {
+  width: 100%;
+  max-width: 20rem;
+}
+
+.footer-spotify-link {
+  display: block;
+  width: 100%;
+  transition: transform 0.2s ease;
+}
+
+.footer-spotify-link:hover {
+  transform: scale(1.02);
+}
+
+.footer-spotify-img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.footer-bottom {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--bg-elevated);
+}
+
+.footer-copyright {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.footer-copyright a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.footer-copyright a:hover {
+  color: var(--text-primary);
+}
