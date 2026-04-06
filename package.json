@@ -11,6 +11,7 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "@calcom/embed-react": "^1.5.3",
     "framer-motion": "^11.0.8",
     "lucide-react": "^0.344.0",
     "ogl": "^1.0.11",

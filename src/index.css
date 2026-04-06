@@ -779,3 +779,11 @@ body:hover .cursor-dot {
 .footer-copyright a:hover {
   color: var(--text-primary);
 }
+
+/* ========================================
+   CAL.COM WIDGET OVERRIDES
+   ======================================== */
+cal-floating-button {
+  transform: scale(0.9) !important;
+  transform-origin: bottom left !important;
+}

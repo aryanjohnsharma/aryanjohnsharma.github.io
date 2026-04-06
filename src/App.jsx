@@ -8,6 +8,7 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Setup from './components/Setup';
 import SpotifyWidget from './components/SpotifyWidget';
+import CalWidget from './components/CalWidget';
 import DarkVeil from './components/DarkVeil/DarkVeil';
 
 function App() {
@@ -75,6 +76,7 @@ function App() {
             </AnimatePresence>
             <Footer />
             <SpotifyWidget />
+            <CalWidget />
         </div>
     );
 }
