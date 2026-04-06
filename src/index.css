@@ -790,6 +790,6 @@ cal-floating-button {
 
 @media (max-width: 768px) {
   cal-floating-button {
-    bottom: 6.5rem !important;
+    transform: translateY(-5.5rem) scale(0.9) !important;
   }
 }

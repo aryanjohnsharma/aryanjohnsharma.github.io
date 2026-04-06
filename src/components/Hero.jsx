@@ -166,7 +166,7 @@ const Hero = () => {
                 justifyContent: 'center',
                 flexDirection: isMobile ? 'column' : 'row',
                 gap: isMobile ? '2.5rem' : '4rem',
-                paddingTop: isMobile ? '6rem' : '5rem',
+                paddingTop: isMobile ? '0.5rem' : '5rem',
                 paddingBottom: isMobile ? '3rem' : '0',
                 overflow: 'hidden'
             }}>
