@@ -148,36 +148,40 @@ const Setup = () => {
 
     return (
         <PageWrapper>
-            <div style={{
-                paddingTop: isMobile ? '6rem' : '8rem',
-                paddingBottom: '4rem',
-                minHeight: '100vh',
-                width: '100%'
+            <div style={{ paddingTop: isMobile ? '60px' : '80px' }}></div>
+            <div className="panel screen-line-top screen-line-bottom" style={{
+                padding: '2rem 1.5rem',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                borderBottom: '1px solid var(--border-line)'
             }}>
-                <SectionHeader title="My Setup." />
+                <h2 style={{
+                    fontSize: 'clamp(2rem, 5vw, 3rem)',
+                    color: 'var(--text-primary)',
+                    letterSpacing: '-0.03em',
+                    fontWeight: 700,
+                    marginBottom: '1rem'
+                }}>
+                    My Setup.
+                </h2>
                 <div style={{
-                    marginBottom: '1.5rem',
                     maxWidth: '600px',
                     fontFamily: 'var(--font-mono)',
                     letterSpacing: '0.5px',
                     lineHeight: 1.6,
                 }}>
                     <span style={{
-                        fontSize: isMobile ? '1rem' : '1.15rem',
+                        fontSize: isMobile ? '0.9rem' : '1rem',
                         color: 'var(--text-body)',
                         fontWeight: 500,
                     }}>
-                        Hardware <span style={{ color: 'var(--accent)', fontWeight: 700 }}>&amp;&amp;</span> software
-                    </span>
-                    <br />
-                    <span style={{
-                        fontSize: isMobile ? '0.85rem' : '0.95rem',
-                        color: 'var(--text-muted)',
-                        fontStyle: 'italic',
-                    }}>
-                        I keep in my toolbox.
+                        Hardware <span style={{ color: 'var(--accent)', fontWeight: 700 }}>&amp;&amp;</span> software I keep in my toolbox.
                     </span>
                 </div>
+            </div>
+
+            <div className="panel screen-line-bottom" style={{ padding: '1.5rem' }}>
 
                 <AnimatePresence mode="popLayout">
                     <div style={{
@@ -193,6 +197,7 @@ const Setup = () => {
                     </div>
                 </AnimatePresence>
             </div>
+            <div className="pattern-separator"></div>
         </PageWrapper>
     );
 };

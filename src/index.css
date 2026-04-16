@@ -18,6 +18,7 @@
   --nav-border: rgba(255, 255, 255, 0.1);
   --nav-shadow: rgba(0, 0, 0, 0.3);
   --mobile-overlay-bg: rgba(0, 0, 0, 0.97);
+  --border-line: rgba(255, 255, 255, 0.12);
 }
 
 [data-theme="light"] {
@@ -34,6 +35,7 @@
   --nav-border: rgba(0, 0, 0, 0.08);
   --nav-shadow: rgba(0, 0, 0, 0.08);
   --mobile-overlay-bg: rgba(245, 245, 240, 0.97);
+  --border-line: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -134,10 +136,66 @@ main {
 
 /* Common container for views */
 .page-container {
-  max-width: 1200px;
+  max-width: 48rem; /* Equivalent to max-w-3xl */
   margin: 0 auto;
-  padding: 0 2rem;
   width: 100%;
+}
+
+/* ========================================
+   LAYOUT SYSTEM — Boxy Grid Panels
+   ======================================== */
+
+.panel {
+  border-left: 1px solid var(--border-line);
+  border-right: 1px solid var(--border-line);
+}
+
+.screen-line-top {
+  position: relative;
+}
+.screen-line-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100vw;
+  z-index: -1;
+  height: 1px;
+  width: 200vw;
+  background-color: var(--border-line);
+}
+
+.screen-line-bottom {
+  position: relative;
+}
+.screen-line-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -100vw;
+  z-index: -1;
+  height: 1px;
+  width: 200vw;
+  background-color: var(--border-line);
+}
+
+.pattern-separator {
+  position: relative;
+  display: flex;
+  height: 2rem; /* h-8 */
+  width: 100%;
+  border-left: 1px solid var(--border-line);
+  border-right: 1px solid var(--border-line);
+}
+.pattern-separator::before {
+  content: "";
+  position: absolute;
+  left: -100vw;
+  z-index: -1;
+  height: 2rem;
+  width: 200vw;
+  background-image: repeating-linear-gradient(315deg, var(--border-line) 0, var(--border-line) 1px, transparent 0, transparent 50%);
+  background-size: 10px 10px;
+  opacity: 0.56;
 }
 
 /* ========================================
@@ -613,18 +671,17 @@ body:hover .cursor-dot {
 
 .footer-container {
   width: 100%;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  border-top: 1px solid var(--bg-elevated);
   position: relative;
   z-index: 10;
-  background-color: var(--bg-base);
+  background-color: transparent;
 }
 
 .footer-content {
-  max-width: 64rem;
+  max-width: 48rem;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 3rem 1.5rem;
+  border-left: 1px solid var(--border-line);
+  border-right: 1px solid var(--border-line);
 }
 
 .footer-grid {

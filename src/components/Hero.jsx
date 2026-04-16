@@ -158,204 +158,161 @@ const Hero = () => {
 
     return (
         <PageWrapper>
-            <div style={{
+            <div className="panel" style={{
                 position: 'relative',
-                minHeight: '100vh',
                 display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: isMobile ? 'column' : 'row',
-                gap: isMobile ? '2.5rem' : '4rem',
-                paddingTop: isMobile ? '0.5rem' : '5rem',
-                paddingBottom: isMobile ? '3rem' : '0',
-                overflow: 'hidden'
+                flexDirection: 'column',
+                width: '100%',
+                marginTop: isMobile ? '70px' : '100px', // Header spacing
             }}>
+                {/* Profile Cover Box */}
+                <div className="screen-line-top screen-line-bottom" style={{
+                    position: 'relative',
+                    width: '100%',
+                    aspectRatio: isMobile ? '2.5/1' : '4/1',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: isDark ? 'rgba(0, 0, 0, 0.4)' : 'rgba(255, 255, 255, 0.4)',
+                    overflow: 'hidden',
+                }}>
+                    {/* Ambient grid dots inside cover */}
+                    <div style={{
+                        position: 'absolute',
+                        inset: 0,
+                        zIndex: 0,
+                        pointerEvents: 'none',
+                        opacity: 0.15,
+                        backgroundImage: `radial-gradient(circle, var(--accent) 1px, transparent 1px)`,
+                        backgroundSize: '20px 20px',
+                    }} />
+                    <div style={{ zIndex: 1, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', fontSize: isMobile ? '0.7rem' : '0.9rem' }}>
+                       <span style={{ color: 'var(--accent)' }}>▸</span> <TypeWriter text="~/portfolio" delay={300} speed={60} />
+                    </div>
+                </div>
 
-                {/* Ambient grid dots */}
+                {/* Profile Header Block */}
+                <div className="screen-line-bottom" style={{
+                    display: 'flex',
+                    flexDirection: isMobile ? 'column' : 'row',
+                    width: '100%',
+                }}>
+                    {/* Avatar Container */}
+                    <div style={{
+                        padding: '0 1.5rem 1.5rem 1.5rem',
+                        borderRight: isMobile ? 'none' : '1px solid var(--border-line)',
+                        borderBottom: isMobile ? '1px solid var(--border-line)' : 'none',
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        justifyContent: 'center',
+                        flexShrink: 0
+                    }}>
+                        <div style={{
+                            width: isMobile ? '110px' : '150px',
+                            height: isMobile ? '110px' : '150px',
+                            marginTop: isMobile ? '-3rem' : '-3rem', // spill into the cover
+                            border: '1px solid var(--border-line)',
+                            backgroundColor: 'var(--bg-base)',
+                            padding: '4px',
+                            position: 'relative',
+                            zIndex: 10
+                        }}>
+                            <img
+                                src="/assets/pfp_new.jpeg"
+                                alt="Aryan Sharma"
+                                style={{
+                                    width: '100%', height: '100%', objectFit: 'cover',
+                                    filter: isDark ? 'grayscale(80%) contrast(1.2)' : 'grayscale(20%)',
+                                }}
+                            />
+                        </div>
+                    </div>
+
+                    {/* Content Container */}
+                    <div style={{
+                        flex: 1,
+                        display: 'flex',
+                        flexDirection: 'column',
+                    }}>
+                        <div style={{
+                            padding: '1rem 1.5rem',
+                            borderBottom: '1px solid var(--border-line)',
+                        }}>
+                           <motion.h1 
+                               initial={{ opacity: 0, y: 10 }}
+                               animate={{ opacity: 1, y: 0 }}
+                               style={{
+                                fontFamily: 'var(--font-sans)',
+                                fontSize: 'clamp(2rem, 5vw, 3rem)',
+                                lineHeight: 1.1,
+                                letterSpacing: '-0.04em',
+                                color: 'var(--text-primary)',
+                                fontWeight: 700,
+                            }}>
+                                <ShinyText text="Aryan Sharma" speed={3} color={isDark ? '#ffffff' : '#111111'} shineColor="#FF6A00" spread={120} />
+                            </motion.h1>
+                        </div>
+                        
+                        <div style={{
+                            padding: '0.8rem 1.5rem',
+                            borderBottom: '1px solid var(--border-line)',
+                            fontFamily: 'var(--font-mono)',
+                            color: 'var(--text-body)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            fontSize: '0.9rem',
+                            gap: '0.5rem'
+                        }}>
+                            Developer <span style={{ color: 'var(--accent)' }}>//</span> Freelancer
+                        </div>
+
+                        <div style={{
+                            padding: '1.2rem 1.5rem',
+                            display: 'flex',
+                            gap: '1rem',
+                            flexWrap: 'wrap'
+                        }}>
+                            <MagneticButton primary onClick={() => window.location.href = 'mailto:aryanjohnsharma@gmail.com'}>
+                                <Mail size={14} /> Email Me
+                            </MagneticButton>
+                            <MagneticButton href="resume.pdf" target="_blank">
+                                <FileText size={14} /> Resume
+                            </MagneticButton>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Info Bar */}
                 <div style={{
-                    position: 'absolute',
-                    inset: 0,
-                    zIndex: 0,
-                    pointerEvents: 'none',
-                    opacity: 0.12,
-                    backgroundImage: `radial-gradient(circle, var(--accent) 1px, transparent 1px)`,
-                    backgroundSize: '60px 60px',
-                    maskImage: 'radial-gradient(ellipse at center, black 20%, transparent 70%)',
-                    WebkitMaskImage: 'radial-gradient(ellipse at center, black 20%, transparent 70%)',
-                }} />
-
-                {/* Profile Picture — on top for mobile */}
-                {isMobile && (
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                        style={{ width: '100%', display: 'flex', justifyContent: 'center', position: 'relative', zIndex: 1 }}
-                    >
-                        <div style={{
-                            position: 'relative',
-                            width: '200px',
-                            aspectRatio: '4/5',
-                        }}>
-                            <div style={{
-                                position: 'absolute',
-                                top: '10px', left: '10px', right: '-10px', bottom: '-10px',
-                                border: '2px solid var(--accent)',
-                                opacity: 0.6, zIndex: 0,
-                            }} />
-                            <img
-                                src="/assets/pfp_new.jpeg"
-                                alt="Aryan Sharma"
-                                style={{
-                                    width: '100%', height: '100%', objectFit: 'cover',
-                                    position: 'relative', zIndex: 1,
-                                    filter: isDark ? 'grayscale(80%) contrast(1.2) brightness(0.9)' : 'grayscale(20%) contrast(1.05) brightness(1)',
-                                }}
-                            />
-                        </div>
-                    </motion.div>
-                )}
-
-                {/* Text Content */}
-                <motion.div
-                    variants={container}
-                    initial="hidden"
-                    animate="show"
-                    style={{
-                        flex: isMobile ? 'none' : '1 1 500px',
-                        width: isMobile ? '100%' : 'auto',
-                        position: 'relative',
-                        zIndex: 1,
-                        y: isMobile ? 0 : textY,
-                    }}
-                >
-                    {/* Terminal label */}
-                    <motion.div variants={item} style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.75rem',
-                        color: 'var(--text-muted)',
-                        marginBottom: '1.2rem',
-                        letterSpacing: '2px',
-                        textTransform: 'uppercase',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px'
-                    }}>
-                        <span style={{ color: 'var(--accent)' }}>▸</span>
-                        <TypeWriter text="~/portfolio" delay={300} speed={60} />
-                    </motion.div>
-
-                    <motion.h1 variants={item} style={{
-                        fontFamily: 'var(--font-sans)',
-                        fontSize: isMobile ? 'clamp(2.8rem, 12vw, 4rem)' : 'clamp(3.5rem, 9vw, 7rem)',
-                        lineHeight: 0.95,
-                        marginBottom: '1.2rem',
-                        letterSpacing: '-0.04em',
-                        color: 'var(--text-primary)',
-                        fontWeight: 700,
-                    }}>
-                        <ShinyText text="Aryan" speed={3} color={isDark ? '#ffffff' : '#111111'} shineColor="#FF6A00" spread={120} />
-                        <br />
-                        <ShinyText text="Sharma" speed={3} color="#FF6A00" shineColor={isDark ? '#ffffff' : '#111111'} spread={120} />
-                    </motion.h1>
-
-                    <motion.h2 variants={item} style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: isMobile ? '0.9rem' : 'clamp(1rem, 2vw, 1.3rem)',
-                        fontWeight: 400,
-                        color: 'var(--text-body)',
-                        marginBottom: '1.2rem',
-                        maxWidth: '550px',
-                        lineHeight: 1.6,
-                        letterSpacing: '0.5px',
-                    }}>
-                        Developer <span style={{ color: 'var(--accent)' }}>//</span> Freelancer
-                    </motion.h2>
-
-                    <motion.div variants={item} style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: isMobile ? '0.75rem' : '0.9rem',
-                        color: 'var(--text-muted)',
-                        marginBottom: isMobile ? '2.5rem' : '3.5rem',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        flexWrap: 'wrap',
-                    }}>
-                        <span style={{ width: '20px', height: '1px', backgroundColor: 'var(--accent)', display: 'inline-block', flexShrink: 0 }} />
-                        <span>Tech Enthusiast. Full stack. Ships things.</span>
-                        <motion.span
-                            animate={{ opacity: [1, 0] }}
-                            transition={{ repeat: Infinity, duration: 0.8 }}
-                            style={{
-                                display: 'inline-block',
-                                width: '8px',
-                                height: '1.1em',
-                                backgroundColor: 'var(--accent)',
-                            }}
-                        />
-                    </motion.div>
-
-                    <motion.div variants={item} style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                        <MagneticButton primary onClick={() => window.location.href = 'mailto:aryanjohnsharma@gmail.com'}>
-                            <Mail size={14} /> Email Me
-                        </MagneticButton>
-                        <MagneticButton href="resume.pdf" target="_blank">
-                            <FileText size={14} /> Resume
-                        </MagneticButton>
-                    </motion.div>
-                </motion.div>
-
-                {/* Desktop: Profile Picture on right */}
-                {!isMobile && (
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                        style={{ flex: '1 1 400px', display: 'flex', justifyContent: 'center', position: 'relative', zIndex: 1, y: imageY }}
-                    >
-                        <div style={{
-                            position: 'relative',
-                            width: '100%',
-                            maxWidth: '380px',
-                            aspectRatio: '4/5',
-                        }}>
-                            <div style={{
-                                position: 'absolute',
-                                top: '15px', left: '15px', right: '-15px', bottom: '-15px',
-                                border: '2px solid var(--accent)',
-                                opacity: 0.6, zIndex: 0,
-                                transition: 'all 0.5s ease'
-                            }} className="pfp-border" />
-                            <img
-                                src="/assets/pfp_new.jpeg"
-                                alt="Aryan Sharma"
-                                style={{
-                                    width: '100%', height: '100%', objectFit: 'cover',
-                                    position: 'relative', zIndex: 1,
-                                    filter: isDark ? 'grayscale(80%) contrast(1.2) brightness(0.9)' : 'grayscale(20%) contrast(1.05) brightness(1)',
-                                    transition: 'all 0.5s ease', cursor: 'pointer'
-                                }}
-                                onMouseOver={(e) => {
-                                    e.currentTarget.style.filter = 'grayscale(0%) contrast(1.1) brightness(1)';
-                                    e.currentTarget.previousSibling.style.transform = 'translate(8px, 8px)';
-                                    e.currentTarget.previousSibling.style.opacity = '1';
-                                    e.currentTarget.previousSibling.style.boxShadow = isDark ? '0 0 30px rgba(255,106,0,0.2)' : '0 0 20px rgba(224,85,0,0.12)';
-                                }}
-                                onMouseOut={(e) => {
-                                    e.currentTarget.style.filter = isDark ? 'grayscale(80%) contrast(1.2) brightness(0.9)' : 'grayscale(20%) contrast(1.05) brightness(1)';
-                                    e.currentTarget.previousSibling.style.transform = 'translate(0px, 0px)';
-                                    e.currentTarget.previousSibling.style.opacity = '0.6';
-                                    e.currentTarget.previousSibling.style.boxShadow = 'none';
-                                }}
-                            />
-                        </div>
-                    </motion.div>
-                )}
+                    padding: '1.5rem',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.85rem',
+                    color: 'var(--text-muted)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    borderBottom: '1px solid var(--border-line)'
+                }}>
+                    <span style={{ width: '20px', height: '1px', backgroundColor: 'var(--accent)', display: 'inline-block' }} />
+                    <span>Tech Enthusiast. Full stack. Ships things.</span>
+                    <motion.span
+                        animate={{ opacity: [1, 0] }}
+                        transition={{ repeat: Infinity, duration: 0.8 }}
+                        style={{
+                            display: 'inline-block',
+                            width: '8px',
+                            height: '1.1em',
+                            backgroundColor: 'var(--accent)',
+                        }}
+                    />
+                </div>
             </div>
 
-            {/* Embedded About Section */}
-            <About />
+            <div className="pattern-separator"></div>
+
+            <div className="panel" style={{ paddingBottom: '2rem' }}>
+                <About />
+            </div>
         </PageWrapper>
     );
 };

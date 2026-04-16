@@ -80,17 +80,32 @@ const Skills = () => {
 
     return (
         <PageWrapper>
-            <div style={{
-                paddingTop: isMobile ? '6rem' : '8rem',
-                paddingBottom: '4rem',
-                minHeight: '100vh',
-                width: '100%'
+            <div style={{ paddingTop: isMobile ? '60px' : '80px' }}></div>
+            <div className="panel screen-line-top screen-line-bottom" style={{
+                padding: '2rem 1.5rem',
+                display: 'flex',
+                alignItems: 'baseline',
+                gap: '1rem',
+                flexWrap: 'wrap',
+                justifyContent: 'space-between',
+                width: '100%',
+                borderBottom: '1px solid var(--border-line)'
             }}>
-                <SectionHeader title="Skills." />
+                <div style={{ marginBottom: isMobile ? '1rem' : '0' }}>
+                    <h2 style={{
+                        fontSize: 'clamp(2rem, 5vw, 3rem)',
+                        color: 'var(--text-primary)',
+                        letterSpacing: '-0.03em',
+                        display: 'inline-block',
+                        position: 'relative',
+                        fontWeight: 700,
+                    }}>
+                        Skills.
+                    </h2>
+                </div>
 
-                {/* Filter buttons — scrollable on mobile */}
+                {/* Filter buttons */}
                 <div style={{
-                    marginBottom: '3rem',
                     display: 'flex',
                     gap: '0.5rem',
                     flexWrap: 'wrap',
@@ -100,13 +115,13 @@ const Skills = () => {
                             key={cat}
                             onClick={() => setActiveFilter(cat)}
                             style={{
-                                padding: isMobile ? '0.5rem 1rem' : '0.7rem 1.5rem',
-                                backgroundColor: activeFilter === cat ? 'var(--accent)' : 'transparent',
+                                padding: isMobile ? '0.4rem 0.8rem' : '0.5rem 1rem',
+                                backgroundColor: activeFilter === cat ? 'var(--accent)' : 'var(--bg-surface)',
                                 color: activeFilter === cat ? '#000000' : 'var(--text-muted)',
-                                border: activeFilter === cat ? '1px solid var(--accent)' : '1px solid var(--bg-elevated)',
+                                border: '1px solid var(--border-line)',
                                 borderRadius: '0',
                                 fontFamily: 'var(--font-mono)',
-                                fontSize: isMobile ? '0.7rem' : '0.8rem',
+                                fontSize: isMobile ? '0.65rem' : '0.75rem',
                                 letterSpacing: '1px',
                                 textTransform: 'uppercase',
                                 cursor: 'pointer',
@@ -118,17 +133,19 @@ const Skills = () => {
                         </button>
                     ))}
                 </div>
+            </div>
 
+            <div className="panel screen-line-bottom" style={{ padding: '0', width: '100%' }}>
                 <motion.div
                     layout
                     style={{
                         display: 'grid',
                         gridTemplateColumns: isMobile
                             ? 'repeat(2, 1fr)'
-                            : 'repeat(auto-fill, minmax(160px, 1fr))',
+                            : 'repeat(auto-fill, minmax(200px, 1fr))',
                         gap: '1px',
                         width: '100%',
-                        backgroundColor: 'var(--bg-elevated)',
+                        backgroundColor: 'var(--border-line)',
                     }}
                 >
                     <AnimatePresence mode="popLayout">
@@ -182,6 +199,7 @@ const Skills = () => {
                     </AnimatePresence>
                 </motion.div>
             </div>
+            <div className="pattern-separator"></div>
         </PageWrapper>
     );
 };

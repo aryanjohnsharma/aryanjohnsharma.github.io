@@ -155,8 +155,7 @@ const About = () => {
 
     return (
         <div id="about" style={{
-            paddingTop: '4rem',
-            paddingBottom: '6rem',
+            padding: '2rem 1.5rem',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center'
@@ -169,8 +168,7 @@ const About = () => {
                 gridAutoRows: 'auto',
                 gap: '1rem',
                 width: '100%',
-                maxWidth: '1200px',
-                margin: '1rem auto 0'
+                marginTop: '1rem'
             }}>
 
                 {/* Main Narrative */}
