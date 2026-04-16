@@ -58,9 +58,46 @@ const ThemeToggle = ({ size = 34 }) => {
         localStorage.setItem('theme', dark ? 'dark' : 'light');
     }, []);
 
+    const playSwitchSound = () => {
+        try {
+            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContextClass) return;
+            
+            const audioContext = new AudioContextClass();
+            // In some browsers, AudioContext might start in a suspended state
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            // Set to an audible pitch for a nice "pop" or "click" sound
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(400, audioContext.currentTime);
+            
+            // Adjust gain (volume) to make it smooth and subtle (0.15 max)
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+            // Rise to max volume quickly (shorter attack)
+            gainNode.gain.linearRampToValueAtTime(0.15, audioContext.currentTime + 0.005);
+            // Decay to 0 volume smoothly and quickly
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.04);
+
+            oscillator.start(audioContext.currentTime);
+            // Stop right after the decay finishes
+            oscillator.stop(audioContext.currentTime + 0.05);
+        } catch (e) {
+            console.error("Failed to play theme switch sound", e);
+        }
+    };
+
     const toggleTheme = useCallback(() => {
         const newIsDark = !isDark;
         setIsDark(newIsDark);
+        playSwitchSound();
 
         // Inject the view-transition CSS
         injectTransitionCSS();
