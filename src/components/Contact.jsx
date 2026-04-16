@@ -13,7 +13,7 @@ const SectionHeader = ({ title }) => {
             style={{ marginBottom: '2rem' }}
         >
             <h2 style={{
-                fontSize: 'clamp(2rem, 5vw, 4rem)',
+                fontSize: 'clamp(1.5rem, 4vw, 2.25rem)',
                 color: 'var(--text-primary)',
                 letterSpacing: '-0.03em',
                 display: 'inline-block',
@@ -51,14 +51,15 @@ const Contact = () => {
     return (
         <PageWrapper>
             <div style={{ paddingTop: isMobile ? '60px' : '80px' }}></div>
-            <div className="panel screen-line-top screen-line-bottom" style={{
+            <div className="pattern-separator"></div>
+            <div className="panel" style={{
                 padding: '2rem 1.5rem',
                 display: 'flex',
                 alignItems: 'center',
                 borderBottom: '1px solid var(--border-line)'
             }}>
                 <h2 style={{
-                    fontSize: 'clamp(2rem, 5vw, 3rem)',
+                    fontSize: 'clamp(1.5rem, 4vw, 2.25rem)',
                     color: 'var(--text-primary)',
                     letterSpacing: '-0.03em',
                     fontWeight: 700,
@@ -67,7 +68,7 @@ const Contact = () => {
                 </h2>
             </div>
 
-            <div className="panel screen-line-bottom" style={{ padding: '1.5rem' }}>
+            <div className="panel" style={{ padding: '1.5rem' }}>
 
                 <div ref={ref} style={{
                     display: 'flex',
@@ -138,7 +139,7 @@ const Contact = () => {
                     </motion.div>
                 </div>
             </div>
-            <div className="pattern-separator"></div>
+
         </PageWrapper>
     );
 };

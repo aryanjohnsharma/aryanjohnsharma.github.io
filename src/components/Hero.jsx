@@ -166,7 +166,7 @@ const Hero = () => {
                 marginTop: isMobile ? '70px' : '100px', // Header spacing
             }}>
                 {/* Profile Cover Box */}
-                <div className="screen-line-top screen-line-bottom" style={{
+                <div style={{
                     position: 'relative',
                     width: '100%',
                     aspectRatio: isMobile ? '2.5/1' : '4/1',
@@ -192,7 +192,7 @@ const Hero = () => {
                 </div>
 
                 {/* Profile Header Block */}
-                <div className="screen-line-bottom" style={{
+                <div style={{
                     display: 'flex',
                     flexDirection: isMobile ? 'column' : 'row',
                     width: '100%',
@@ -308,7 +308,7 @@ const Hero = () => {
                 </div>
             </div>
 
-            <div className="pattern-separator"></div>
+
 
             <div className="panel" style={{ paddingBottom: '2rem' }}>
                 <About />

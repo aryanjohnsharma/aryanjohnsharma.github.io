@@ -34,7 +34,7 @@ const SectionHeader = ({ title }) => {
             style={{ marginBottom: '2rem' }}
         >
             <h2 style={{
-                fontSize: 'clamp(2rem, 5vw, 4rem)',
+                fontSize: 'clamp(1.5rem, 4vw, 2.25rem)',
                 color: 'var(--text-primary)',
                 letterSpacing: '-0.03em',
                 display: 'inline-block',
@@ -81,7 +81,7 @@ const Skills = () => {
     return (
         <PageWrapper>
             <div style={{ paddingTop: isMobile ? '60px' : '80px' }}></div>
-            <div className="panel screen-line-top screen-line-bottom" style={{
+            <div className="panel" style={{
                 padding: '2rem 1.5rem',
                 display: 'flex',
                 alignItems: 'baseline',
@@ -93,7 +93,7 @@ const Skills = () => {
             }}>
                 <div style={{ marginBottom: isMobile ? '1rem' : '0' }}>
                     <h2 style={{
-                        fontSize: 'clamp(2rem, 5vw, 3rem)',
+                        fontSize: 'clamp(1.5rem, 4vw, 2.25rem)',
                         color: 'var(--text-primary)',
                         letterSpacing: '-0.03em',
                         display: 'inline-block',
@@ -135,7 +135,7 @@ const Skills = () => {
                 </div>
             </div>
 
-            <div className="panel screen-line-bottom" style={{ padding: '0', width: '100%' }}>
+            <div className="panel" style={{ padding: '0', width: '100%' }}>
                 <motion.div
                     layout
                     style={{
@@ -199,7 +199,7 @@ const Skills = () => {
                     </AnimatePresence>
                 </motion.div>
             </div>
-            <div className="pattern-separator"></div>
+
         </PageWrapper>
     );
 };

@@ -51,7 +51,11 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="footer-container">
+        <>
+            <div className="page-container">
+                <div className="pattern-separator"></div>
+            </div>
+            <footer className="footer-container">
             <div className="footer-content">
                 <div className="footer-grid">
                     {/* Column 1 */}
@@ -113,6 +117,7 @@ const Footer = () => {
                 </div>
             </div>
         </footer>
+        </>
     );
 };
 

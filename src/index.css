@@ -150,38 +150,10 @@ main {
   border-right: 1px solid var(--border-line);
 }
 
-.screen-line-top {
-  position: relative;
-}
-.screen-line-top::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100vw;
-  z-index: -1;
-  height: 1px;
-  width: 200vw;
-  background-color: var(--border-line);
-}
-
-.screen-line-bottom {
-  position: relative;
-}
-.screen-line-bottom::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: -100vw;
-  z-index: -1;
-  height: 1px;
-  width: 200vw;
-  background-color: var(--border-line);
-}
-
 .pattern-separator {
   position: relative;
   display: flex;
-  height: 2rem; /* h-8 */
+  height: 2rem;
   width: 100%;
   border-left: 1px solid var(--border-line);
   border-right: 1px solid var(--border-line);
@@ -197,6 +169,7 @@ main {
   background-size: 10px 10px;
   opacity: 0.56;
 }
+
 
 /* ========================================
    CARD SYSTEM — Brutalist dark panels

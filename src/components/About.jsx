@@ -11,7 +11,7 @@ const SectionHeader = ({ title }) => {
             style={{ marginBottom: '2rem' }}
         >
             <h2 style={{
-                fontSize: 'clamp(2rem, 5vw, 4rem)',
+                fontSize: 'clamp(1.5rem, 4vw, 2.25rem)',
                 color: 'var(--text-primary)',
                 letterSpacing: '-0.03em',
                 display: 'inline-block',
