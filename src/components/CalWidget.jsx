@@ -28,7 +28,7 @@ const CalWidget = () => {
       data-cal-namespace="15min"
       data-cal-link="aryan-sharma-amw1me/15min"
       data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-      whileHover={{ scale: 1.05, boxShadow: '0 8px 30px rgba(255, 106, 0, 0.2)' }}
+      whileHover={{ scale: 1.05, boxShadow: '0 8px 30px var(--accent-glow)' }}
       whileTap={{ scale: 0.95 }}
       style={{
         position: 'fixed',
@@ -43,17 +43,17 @@ const CalWidget = () => {
         height: isMobile ? '42px' : '54px',
         padding: '0',
         borderRadius: isMobile ? '9999px' : '0',
-        background: isMobile ? 'var(--nav-bg)' : 'rgba(10, 10, 10, 0.8)',
+        background: 'var(--nav-bg)',
         backdropFilter: isMobile ? 'blur(18px)' : 'blur(12px)',
         WebkitBackdropFilter: isMobile ? 'blur(18px)' : 'blur(12px)',
-        border: isMobile ? '1px solid var(--nav-border)' : '1px solid rgba(255, 106, 0, 0.3)',
-        color: '#FF6A00',
+        border: '1px solid var(--nav-border)',
+        color: 'var(--accent)',
         fontFamily: 'inherit',
         fontSize: '0.9rem',
         fontWeight: '600',
         cursor: 'pointer',
-        boxShadow: isMobile ? '0 4px 20px var(--nav-shadow)' : '0 4px 15px rgba(0, 0, 0, 0.3)',
-        transition: 'top 0.3s ease, bottom 0.3s ease, left 0.3s ease',
+        boxShadow: '0 4px 20px var(--nav-shadow)',
+        transition: 'top 0.3s ease, bottom 0.3s ease, left 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease',
         outline: 'none',
       }}
     >

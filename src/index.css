@@ -220,6 +220,39 @@ main {
   pointer-events: none;
 }
 
+.skill-icon {
+  display: block;
+  width: 68%;
+  height: 68%;
+  object-fit: contain;
+}
+
+.skill-vector-icon {
+  width: 68%;
+  height: 68%;
+  color: var(--accent);
+}
+
+.skill-link:hover,
+.skill-link:focus-visible {
+  border-left-color: var(--accent) !important;
+  outline: none;
+}
+
+.skill-link:focus-visible {
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.skill-icon-monochrome {
+  filter: invert(1);
+  opacity: 0.9;
+}
+
+[data-theme="light"] .skill-icon-monochrome {
+  filter: none;
+  opacity: 0.78;
+}
+
 @keyframes float {
   0% {
     transform: translateY(0px);
@@ -724,7 +757,7 @@ body:hover .cursor-dot {
 
 @media (min-width: 1024px) {
   .footer-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2.5rem;
   }
 }
@@ -776,6 +809,12 @@ body:hover .cursor-dot {
   align-items: center;
 }
 
+@media (min-width: 1024px) {
+  .footer-col-tech {
+    align-items: flex-end;
+  }
+}
+
 .footer-tech-stack {
   display: grid;
   grid-template-columns: 1fr;
@@ -813,52 +852,6 @@ body:hover .cursor-dot {
   color: var(--text-muted);
   font-size: 0.875rem;
   font-family: var(--font-mono);
-}
-
-.footer-col-widget {
-  align-items: center;
-}
-
-@media (min-width: 1024px) {
-  .footer-col-widget {
-    align-items: flex-start;
-  }
-}
-
-.footer-spotify-widget {
-  width: 100%;
-  max-width: 20rem;
-  border-radius: 12px;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
-}
-
-.footer-spotify-link {
-  display: block;
-  width: 100%;
-  transition: transform 0.2s ease;
-}
-
-.footer-spotify-link:hover {
-  transform: scale(1.02);
-}
-
-.footer-spotify-img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  display: block;
-  transition: filter 0.3s ease, opacity 0.3s ease;
-}
-
-[data-theme="light"] .footer-spotify-widget {
-  padding: 1px;
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-[data-theme="light"] .footer-spotify-img {
-  filter: invert(1) hue-rotate(180deg) saturate(0.78) brightness(1.12) contrast(0.9);
-  opacity: 0.92;
 }
 
 .footer-bottom {

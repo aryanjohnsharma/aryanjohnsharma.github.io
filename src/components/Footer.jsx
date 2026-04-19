@@ -93,19 +93,6 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* Column 3 */}
-                    <div className="footer-col footer-col-widget">
-                        <div className="footer-spotify-widget">
-                            <a href="https://open.spotify.com/user/r95f1qecgkdxt73wiyorgokf2" target="_blank" rel="noopener noreferrer" className="footer-spotify-link">
-                                <img
-                                    src="https://spotify-recently-played-readme.vercel.app/api?user=r95f1qecgkdxt73wiyorgokf2&count=4"
-                                    alt="Spotify recently played"
-                                    className="footer-spotify-img"
-                                    loading="lazy"
-                                />
-                            </a>
-                        </div>
-                    </div>
                 </div>
 
                 <div className="footer-bottom">
