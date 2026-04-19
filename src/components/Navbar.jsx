@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
+import playPressSound from '../utils/playPressSound';
 
 const useIsMobile = (breakpoint = 768) => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
@@ -113,6 +114,17 @@ const Navbar = () => {
 
     return (
         <>
+            {/* Mobile: logo balanced opposite the theme toggle */}
+            {isMobile && (
+                <NavLink to="/" className="mobile-nav-logo" aria-label="Home" onClick={playPressSound}>
+                    <img
+                        src="/assets/text logo.png"
+                        alt="Aryan Sharma"
+                        className="mobile-nav-logo-img"
+                    />
+                </NavLink>
+            )}
+
             {/* Mobile: floating theme toggle in top-right */}
             {isMobile && (
                 <div className="mobile-theme-toggle">
@@ -129,7 +141,7 @@ const Navbar = () => {
                     <div className="nav-inner">
                         {/* Logo — desktop only */}
                         {!isMobile && (
-                            <NavLink to="/" className="nav-logo">
+                            <NavLink to="/" className="nav-logo" onClick={playPressSound}>
                                 <img
                                     src="/assets/text logo.png"
                                     alt="Aryan Sharma"
@@ -143,6 +155,7 @@ const Navbar = () => {
                                     <NavLink
                                         to={item.path}
                                         end={item.path === '/'}
+                                        onClick={playPressSound}
                                         className={({ isActive }) =>
                                             `nav-link${isActive ? ' active' : ''}`
                                         }

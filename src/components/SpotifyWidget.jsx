@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Music } from 'lucide-react';
+import playPressSound from '../utils/playPressSound';
 
 const SpotifyWidget = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,36 +13,45 @@ const SpotifyWidget = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // On mobile, push above the bottom navbar
+    // On mobile, join the top floating control row.
     const bottomOffset = isMobile ? '6rem' : '1.5rem';
     const popupBottom = isMobile ? '8.5rem' : '4.5rem';
 
     return (
         <>
             <motion.button
-                onClick={() => setIsOpen(!isOpen)}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                type="button"
+                aria-label={isOpen ? 'Close Spotify widget' : 'Open Spotify widget'}
+                onClick={() => {
+                    playPressSound();
+                    setIsOpen(!isOpen);
+                }}
+                whileHover={{ scale: 1.05, boxShadow: '0 8px 30px rgba(255, 106, 0, 0.2)' }}
+                whileTap={{ scale: 0.95 }}
                 style={{
                     position: 'fixed',
-                    bottom: bottomOffset,
-                    right: '1.5rem',
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '0',
-                    backgroundColor: 'var(--bg-surface)',
-                    color: 'var(--accent)',
-                    border: '1px solid var(--bg-elevated)',
+                    top: isMobile ? 'max(1rem, env(safe-area-inset-top))' : 'auto',
+                    bottom: isMobile ? 'auto' : bottomOffset,
+                    right: isMobile ? 'calc(max(1rem, env(safe-area-inset-right)) + 52px)' : '1.5rem',
+                    width: isMobile ? '42px' : '54px',
+                    height: isMobile ? '42px' : '54px',
+                    borderRadius: isMobile ? '9999px' : '0',
+                    background: isMobile ? 'var(--nav-bg)' : 'rgba(10, 10, 10, 0.8)',
+                    backdropFilter: isMobile ? 'blur(18px)' : 'blur(12px)',
+                    WebkitBackdropFilter: isMobile ? 'blur(18px)' : 'blur(12px)',
+                    border: isMobile ? '1px solid var(--nav-border)' : '1px solid rgba(255, 106, 0, 0.3)',
+                    color: '#FF6A00',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     cursor: 'pointer',
-                    zIndex: 1000,
-                    boxShadow: '0 0 15px rgba(255, 106, 0, 0.1)',
-                    transition: 'all 0.3s ease',
+                    zIndex: isMobile ? 110 : 50,
+                    boxShadow: isMobile ? '0 4px 20px var(--nav-shadow)' : '0 4px 15px rgba(0, 0, 0, 0.3)',
+                    transition: 'top 0.3s ease, bottom 0.3s ease, right 0.3s ease',
+                    outline: 'none',
                 }}
             >
-                <Music size={18} />
+                <Music size={20} strokeWidth={2.5} />
             </motion.button>
 
             <AnimatePresence>
@@ -52,7 +62,8 @@ const SpotifyWidget = () => {
                         exit={{ opacity: 0, y: 20, scale: 0.9 }}
                         style={{
                             position: 'fixed',
-                            bottom: popupBottom,
+                            top: isMobile ? '4.5rem' : 'auto',
+                            bottom: isMobile ? 'auto' : popupBottom,
                             right: '1rem',
                             left: 'auto',
                             zIndex: 999,

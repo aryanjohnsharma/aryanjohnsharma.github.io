@@ -295,11 +295,37 @@ body:hover .cursor-dot {
    MOBILE FLOATING THEME TOGGLE
    ======================================== */
 
-.mobile-theme-toggle {
+.mobile-theme-toggle,
+.mobile-nav-logo {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 101;
+  top: max(1rem, env(safe-area-inset-top));
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--nav-border);
+  border-radius: 9999px;
+  background: var(--nav-bg);
+  box-shadow: 0 4px 20px var(--nav-shadow);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.mobile-theme-toggle {
+  right: max(1rem, env(safe-area-inset-right));
+}
+
+.mobile-nav-logo {
+  left: max(1rem, env(safe-area-inset-left));
+  text-decoration: none;
+}
+
+.mobile-nav-logo-img {
+  height: 24px;
+  width: auto;
+  opacity: 0.9;
 }
 
 /* ========================================
@@ -359,7 +385,7 @@ body:hover .cursor-dot {
 }
 
 .nav-logo-img {
-  height: 34px;
+  height: 40px;
   width: auto;
   opacity: 0.9;
   transition: opacity 0.2s ease;
@@ -458,27 +484,30 @@ body:hover .cursor-dot {
   /* Bottom bar on mobile */
   .main-nav {
     top: auto !important;
-    bottom: 0;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
     left: 50%;
-    width: 100% !important;
-    border-radius: 1rem 1rem 0 0;
+    width: calc(100% - 1.5rem) !important;
+    max-width: 34rem;
+    border-radius: 1.6rem;
     border-color: var(--nav-border);
     background-color: var(--nav-bg);
+    box-sizing: border-box;
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
   }
 
   .main-nav.scrolling {
-    border-radius: 1rem 1rem 0 0;
+    border-radius: 1.6rem;
     background-color: var(--nav-bg);
   }
 
   body {
-    padding-bottom: 80px;
+    padding-bottom: calc(96px + env(safe-area-inset-bottom));
   }
 
   .nav-inner {
-    padding: 0.6rem 0.5rem;
+    min-height: 64px;
+    padding: 0.55rem 0.5rem;
   }
 
   .nav-list {
@@ -497,6 +526,8 @@ body:hover .cursor-dot {
     font-size: 0.65rem;
     letter-spacing: 0.5px;
     gap: 3px;
+    min-height: 44px;
+    justify-content: center;
   }
 
   /* Theme toggle handled as floating button on mobile */
@@ -516,6 +547,14 @@ body:hover .cursor-dot {
 
   .nav-link.active .nav-icon {
     color: var(--accent);
+  }
+
+  .nav-label {
+    display: none;
+  }
+
+  .nav-link.active .nav-label {
+    display: inline-block;
   }
 
   /* Hide indicator dot on mobile */
@@ -549,6 +588,21 @@ body:hover .cursor-dot {
 @media (max-width: 480px) {
   .page-container {
     padding: 0 1rem;
+  }
+
+  .mobile-theme-toggle,
+  .mobile-nav-logo {
+    top: max(1rem, env(safe-area-inset-top));
+    width: 42px;
+    height: 42px;
+  }
+
+  .mobile-theme-toggle {
+    right: max(1rem, env(safe-area-inset-right));
+  }
+
+  .mobile-nav-logo {
+    left: max(1rem, env(safe-area-inset-left));
   }
 
   .nav-link {
@@ -635,6 +689,10 @@ body:hover .cursor-dot {
 
 /* Invert Logo in light mode */
 [data-theme="light"] .nav-logo-img {
+  filter: invert(1);
+}
+
+[data-theme="light"] .mobile-nav-logo-img {
   filter: invert(1);
 }
 
