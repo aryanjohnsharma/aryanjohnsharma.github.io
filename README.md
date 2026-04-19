@@ -7,7 +7,7 @@ No gimmicks, no bloat—just focused interactions, smooth transitions, and a cle
 
 - Build a portfolio experience that feels premium without sacrificing performance.
 - Keep the architecture straightforward enough to ship and iterate quickly.
-- Blend product storytelling with motion and visual depth in a single-page app.
+- Blend product storytelling with motion and visual depth in a React SPA with multiple client-side routes.
 
 ## Tech stack (and what each piece does)
 
