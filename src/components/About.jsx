@@ -61,7 +61,16 @@ const AboutCard = ({ children, delay, colSpan, accent, className = "", style: ex
     );
 };
 
-const mapHTML = `<!DOCTYPE html>
+const getMapHTML = (isDark) => {
+    const tileLayer = isDark
+        ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+        : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+    const bodyBackground = isDark ? '#0b0b0c' : '#f7f4ee';
+    const overlayBackground = isDark ? 'rgba(20,20,20,0.65)' : 'rgba(255,255,255,0.78)';
+    const overlayBorder = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(20,20,20,0.08)';
+    const overlayColor = isDark ? '#ffffff' : '#1f1f1f';
+
+    return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -69,7 +78,7 @@ const mapHTML = `<!DOCTYPE html>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     body {
-      background: #0b0b0c;
+      background: ${bodyBackground};
       margin: 0;
       padding: 0;
       height: 100vh;
@@ -89,16 +98,17 @@ const mapHTML = `<!DOCTYPE html>
       position: absolute;
       bottom: 12px;
       left: 14px;
-      color: white;
+      color: ${overlayColor};
       font-size: 13px;
       letter-spacing: 0.4px;
-      background: rgba(20,20,20,0.65);
+      background: ${overlayBackground};
       padding: 7px 12px;
       border-radius: 12px;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid ${overlayBorder};
       z-index: 2;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
     .glow-marker {
       width: 14px;
@@ -127,7 +137,7 @@ const mapHTML = `<!DOCTYPE html>
       boxZoom: false,
       keyboard: false
     }).setView(coords, 8);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    L.tileLayer('${tileLayer}', {
       maxZoom: 19
     }).addTo(map);
     setTimeout(() => {
@@ -143,14 +153,27 @@ const mapHTML = `<!DOCTYPE html>
   </script>
 </body>
 </html>`;
+};
 
 const About = () => {
     const [isMobile, setIsMobile] = useState(false);
+    const [isDark, setIsDark] = useState(
+        document.documentElement.getAttribute('data-theme') !== 'light'
+    );
+
     useEffect(() => {
         const check = () => setIsMobile(window.innerWidth <= 768);
         check();
         window.addEventListener('resize', check);
         return () => window.removeEventListener('resize', check);
+    }, []);
+
+    useEffect(() => {
+        const observer = new MutationObserver(() => {
+            setIsDark(document.documentElement.getAttribute('data-theme') !== 'light');
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+        return () => observer.disconnect();
     }, []);
 
     return (
@@ -192,10 +215,11 @@ const About = () => {
 
                 {/* Location Card */}
                 <AboutCard delay={0.2} style={{ padding: 0, overflow: 'hidden', minHeight: '220px' }}>
-                    <iframe 
-                        srcDoc={mapHTML} 
-                        style={{ width: '100%', height: '100%', minHeight: '220px', border: 'none', display: 'block' }} 
-                        title="Location Map" 
+                    <iframe
+                        key={isDark ? 'dark-location-map' : 'light-location-map'}
+                        srcDoc={getMapHTML(isDark)}
+                        style={{ width: '100%', height: '100%', minHeight: '220px', border: 'none', display: 'block' }}
+                        title="Location Map"
                         sandbox="allow-scripts allow-same-origin"
                     />
                 </AboutCard>
