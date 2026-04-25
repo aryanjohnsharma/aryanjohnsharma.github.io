@@ -1,7 +1,7 @@
 import React from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
 
-const Footer = () => {
+const Footer = ({ hideSocials = false }) => {
     const currentYear = new Date().getFullYear();
 
     const socialLinks = [
@@ -59,6 +59,7 @@ const Footer = () => {
             <div className="footer-content">
                 <div className="footer-grid">
                     {/* Column 1 */}
+                    {!hideSocials && (
                     <div className="footer-col footer-col-socials">
                         <div className="footer-social-links">
                             {socialLinks.map((link, index) => (
@@ -79,6 +80,7 @@ const Footer = () => {
                         {/* Empty placeholder for LikeButton layout balance */}
                         <div className="footer-like-placeholder"></div>
                     </div>
+                    )}
 
                     {/* Column 2 */}
                     <div className="footer-col footer-col-tech">

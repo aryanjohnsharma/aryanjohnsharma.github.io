@@ -74,7 +74,7 @@ function App() {
                     <Route path="/contact" element={<Contact />} />
                 </Routes>
             </AnimatePresence>
-            <Footer />
+            <Footer hideSocials={location.pathname === '/contact'} />
             <SpotifyWidget />
             <CalWidget />
         </div>
