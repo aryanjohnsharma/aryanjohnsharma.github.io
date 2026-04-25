@@ -18,7 +18,8 @@ No gimmicks, no bloat—just focused interactions, smooth transitions, and a cle
 - **OGL** — GPU-powered visual layer for custom background effects.
 - **Lucide React** — consistent icon system for navigation, CTAs, and contact actions.
 - **Cal.com Embed (`@calcom/embed-react`)** — in-page scheduling widget integration.
-- **[React Bits](https://reactbits.dev)** — animated UI patterns (wired in via the shadcn-style registry in `components.json` as `@react-bits`); used as the source for elevated pieces such as **DarkVeil** (dark-mode veil background) and **ShinyText** (hero headline treatment).
+- **[React Bits](https://reactbits.dev)** — animated UI patterns (wired in via the shadcn-style registry in `components.json` as `@react-bits`); used as the source for elevated pieces such as **DarkVeil** (dark-mode veil background), **ShinyText** (hero headline treatment), **MagicBento** (About section cards), **BorderGlow** (Contact section cards), and **TiltedCard** (interactive tilt effects).
+- **[qrcode.react](https://www.npmjs.com/package/qrcode.react)** — programmatic SVG QR code generation for the UPI payment card on the Contact page; theme-adaptive (dark/light) with a tap-to-zoom lightbox modal.
 - **ESLint** — code quality and consistency checks before shipping.
 - **GitHub Pages + `gh-pages`** — simple, reliable static deployment pipeline.
 
@@ -29,6 +30,7 @@ No gimmicks, no bloat—just focused interactions, smooth transitions, and a cle
 - **OGL** — high-impact visual treatment in the background layer.
 - **Lucide React** — lightweight, consistent iconography.
 - **Cal.com Embed** — contact flow becomes scheduling, not just a form.
+- **qrcode.react** — crisp, scalable SVG QR codes generated at runtime; no static image files needed.
 
 ## Getting started
 
