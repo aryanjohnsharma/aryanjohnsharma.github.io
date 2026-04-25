@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
+import { MagicCard, GlobalSpotlight } from './MagicBento';
 
 const SectionHeader = ({ title }) => {
     return (
@@ -44,19 +45,30 @@ const AboutCard = ({ children, delay, colSpan, accent, className = "", style: ex
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay }}
-            className={`glass-panel ${className}`}
             style={{
                 gridColumn: colSpan,
-                padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                gap: '1rem',
-                borderTop: accent ? '2px solid var(--accent)' : '1px solid var(--bg-elevated)',
-                ...extraStyle,
+                height: '100%',
             }}
         >
-            {children}
+            <MagicCard
+                className={`glass-panel ${className}`}
+                style={{
+                    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    gap: '1rem',
+                    height: '100%',
+                    borderTop: accent ? '2px solid var(--accent)' : '1px solid var(--bg-elevated)',
+                    ...extraStyle,
+                }}
+                enableStars={accent}
+                enableTilt={true}
+                enableMagnetism={true}
+                glowColor="255, 106, 0"
+            >
+                {children}
+            </MagicCard>
         </motion.div>
     );
 };
@@ -160,6 +172,7 @@ const About = () => {
     const [isDark, setIsDark] = useState(
         document.documentElement.getAttribute('data-theme') !== 'light'
     );
+    const gridRef = useRef(null);
 
     useEffect(() => {
         const check = () => setIsMobile(window.innerWidth <= 768);
@@ -185,7 +198,9 @@ const About = () => {
         }}>
             <SectionHeader title="About." />
 
-            <div style={{
+            <GlobalSpotlight gridRef={gridRef} glowColor="255, 106, 0" />
+
+            <div ref={gridRef} className="bento-section" style={{
                 display: 'grid',
                 gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))',
                 gridAutoRows: 'auto',

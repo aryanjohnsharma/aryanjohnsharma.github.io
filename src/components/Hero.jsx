@@ -127,6 +127,7 @@ const Hero = () => {
     const [isDark, setIsDark] = useState(
         document.documentElement.getAttribute('data-theme') !== 'light'
     );
+    const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
         const check = () => setIsMobile(window.innerWidth <= 768);
@@ -220,9 +221,12 @@ const Hero = () => {
                             <img
                                 src="/assets/pfp_new.jpeg"
                                 alt="Aryan Sharma"
+                                onMouseEnter={() => setIsHovered(true)}
+                                onMouseLeave={() => setIsHovered(false)}
                                 style={{
                                     width: '100%', height: '100%', objectFit: 'cover',
-                                    filter: isDark ? 'grayscale(80%) contrast(1.2)' : 'grayscale(20%)',
+                                    filter: isHovered ? 'grayscale(0%) contrast(1)' : (isDark ? 'grayscale(80%) contrast(1.2)' : 'grayscale(20%)'),
+                                    transition: 'filter 0.3s ease',
                                 }}
                             />
                         </div>
@@ -295,16 +299,6 @@ const Hero = () => {
                 }}>
                     <span style={{ width: '20px', height: '1px', backgroundColor: 'var(--accent)', display: 'inline-block' }} />
                     <span>Tech Enthusiast. Full stack. Ships things.</span>
-                    <motion.span
-                        animate={{ opacity: [1, 0] }}
-                        transition={{ repeat: Infinity, duration: 0.8 }}
-                        style={{
-                            display: 'inline-block',
-                            width: '8px',
-                            height: '1.1em',
-                            backgroundColor: 'var(--accent)',
-                        }}
-                    />
                 </div>
             </div>
 
