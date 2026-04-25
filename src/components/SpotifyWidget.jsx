@@ -1,16 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Music } from 'lucide-react';
 import playPressSound from '../utils/playPressSound';
 
+const SPOTIFY_IMG_URL = 'https://spotify-recently-played-readme.vercel.app/api?user=r95f1qecgkdxt73wiyorgokf2&count=7';
+
 const SpotifyWidget = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    const [imgLoaded, setImgLoaded] = useState(false);
+    const prefetchedRef = useRef(false);
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 768);
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // Pre-fetch the image on mount so it's cached for the first click
+    useEffect(() => {
+        if (prefetchedRef.current) return;
+        prefetchedRef.current = true;
+        const img = new Image();
+        img.src = SPOTIFY_IMG_URL;
+        img.onload = () => setImgLoaded(true);
     }, []);
 
     // On mobile, join the top floating control row.
@@ -71,15 +84,39 @@ const SpotifyWidget = () => {
                             border: '1px solid var(--nav-border)',
                             boxShadow: '0 8px 40px var(--nav-shadow)',
                             maxWidth: 'calc(100vw - 2rem)',
+                            minWidth: '300px',
+                            minHeight: '200px',
+                            background: 'var(--bg-surface)',
                         }}
                     >
                         <a href="https://open.spotify.com/user/r95f1qecgkdxt73wiyorgokf2" target="_blank" rel="noopener noreferrer">
                             <img
-                                src="https://spotify-recently-played-readme.vercel.app/api?user=r95f1qecgkdxt73wiyorgokf2&count=7"
+                                src={SPOTIFY_IMG_URL}
                                 alt="Spotify recently played"
-                                style={{ display: 'block', maxWidth: '100%', width: '300px' }}
+                                onLoad={() => setImgLoaded(true)}
+                                style={{
+                                    display: imgLoaded ? 'block' : 'none',
+                                    maxWidth: '100%',
+                                    width: '300px',
+                                }}
                             />
                         </a>
+                        {!imgLoaded && (
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                width: '300px',
+                                height: '200px',
+                                color: 'var(--text-muted)',
+                                fontFamily: 'var(--font-mono)',
+                                fontSize: '0.75rem',
+                                gap: '8px',
+                            }}>
+                                <Music size={16} />
+                                Loading tracks...
+                            </div>
+                        )}
                     </motion.div>
                 )}
             </AnimatePresence>
