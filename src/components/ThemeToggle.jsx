@@ -2,41 +2,6 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import playPressSound from '../utils/playPressSound';
 
-const STYLE_ID = 'theme-transition-styles';
-
-function injectTransitionCSS() {
-    let el = document.getElementById(STYLE_ID);
-    if (!el) {
-        el = document.createElement('style');
-        el.id = STYLE_ID;
-        document.head.appendChild(el);
-    }
-    el.textContent = `
-        ::view-transition-group(root) {
-            animation-duration: 0.7s;
-            animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        ::view-transition-new(root) {
-            animation-name: reveal-right-left;
-        }
-
-        ::view-transition-old(root) {
-            animation: none;
-            z-index: -1;
-        }
-
-        @keyframes reveal-right-left {
-            from {
-                clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
-            }
-            to {
-                clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-            }
-        }
-    `;
-}
-
 const ThemeToggle = ({ size = 34 }) => {
     const [isDark, setIsDark] = useState(() => {
         const saved = localStorage.getItem('theme');
@@ -64,13 +29,24 @@ const ThemeToggle = ({ size = 34 }) => {
         setIsDark(newIsDark);
         playPressSound();
 
-        // Inject the view-transition CSS
-        injectTransitionCSS();
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Use View Transition API if available, otherwise fall back
-        if (document.startViewTransition) {
-            document.startViewTransition(() => {
+        if (document.startViewTransition && !prefersReducedMotion) {
+            const transition = document.startViewTransition(() => {
                 applyTheme(newIsDark);
+            });
+
+            transition.ready.then(() => {
+                document.documentElement.animate(
+                    {
+                        clipPath: ['inset(0 0 100% 0)', 'inset(0)'],
+                    },
+                    {
+                        duration: 600,
+                        easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                        pseudoElement: '::view-transition-new(root)',
+                    }
+                );
             });
         } else {
             applyTheme(newIsDark);
