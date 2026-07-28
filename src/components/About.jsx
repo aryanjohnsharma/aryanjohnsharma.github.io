@@ -217,7 +217,7 @@ const About = () => {
                         color: 'var(--text-body)',
                     }}>
                         <p style={{ marginBottom: '1.2rem' }}>
-                            I'm <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Aryan Sharma</strong>, a final-year B.Tech IT student who builds things for the web.
+                            I'm <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Aryan Sharma</strong>, a recent B.Tech IT graduate who builds things for the web.
                         </p>
                         <p style={{ marginBottom: '1.2rem', fontSize: 'clamp(0.9rem, 1.5vw, 1.2rem)' }}>
                             Frontend is where I spend most of my time. Picking up full-stack MERN as I go, building projects that actually connect both ends.
