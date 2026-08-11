@@ -1,3 +1,5 @@
+
+
 # Tact Portfolio by Aryan Sharma ~ [@aryanjohnsharma](https://github.com/aryanjohnsharma)
 
 A cinematic, dark-themed React portfolio built to feel fast, intentional, and editorial from the first scroll.  
@@ -66,6 +68,8 @@ Static output lands in `dist/`. To publish to GitHub Pages using the repo’s sc
 ```bash
 npm run deploy
 ```
+
+> Note: `public/404.html` is included with the `spa-github-pages` fallback script to handle client-side routing, ensuring direct deep links (e.g., `/skills`, `/contact`) load correctly on GitHub Pages.
 
 ## Customize
 
