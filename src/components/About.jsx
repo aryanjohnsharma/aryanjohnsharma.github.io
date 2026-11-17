@@ -73,105 +73,8 @@ const AboutCard = ({ children, delay, colSpan, accent, className = "", style: ex
     );
 };
 
-const getMapHTML = (isDark) => {
-    const tileLayer = isDark
-        ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-        : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
-    const bodyBackground = isDark ? '#0b0b0c' : '#f7f4ee';
-    const overlayBackground = isDark ? 'rgba(20,20,20,0.65)' : 'rgba(255,255,255,0.78)';
-    const overlayBorder = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(20,20,20,0.08)';
-    const overlayColor = isDark ? '#ffffff' : '#1f1f1f';
-
-    return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <style>
-    body {
-      background: ${bodyBackground};
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      width: 100vw;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      overflow: hidden;
-    }
-    #map {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-    }
-    .overlay {
-      position: absolute;
-      bottom: 12px;
-      left: 14px;
-      color: ${overlayColor};
-      font-size: 13px;
-      letter-spacing: 0.4px;
-      background: ${overlayBackground};
-      padding: 7px 12px;
-      border-radius: 12px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid ${overlayBorder};
-      z-index: 2;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    }
-    .glow-marker {
-      width: 14px;
-      height: 14px;
-      background: #4ade80;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #4ade80, 0 0 20px #4ade80, 0 0 30px rgba(74,222,128,0.6);
-    }
-    .leaflet-control-attribution {
-      display: none !important;
-    }
-  </style>
-</head>
-<body>
-  <div id="map"></div>
-  <div class="overlay">Based in Dhanbad, India</div>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script>
-    const coords = [23.7957, 86.4304];
-    const map = L.map('map', {
-      zoomControl: false,
-      attributionControl: false,
-      dragging: false,
-      scrollWheelZoom: false,
-      doubleClickZoom: false,
-      boxZoom: false,
-      keyboard: false
-    }).setView(coords, 8);
-    L.tileLayer('${tileLayer}', {
-      maxZoom: 19
-    }).addTo(map);
-    setTimeout(() => {
-      map.flyTo(coords, 11, { duration: 2 });
-    }, 400);
-    const glowIcon = L.divIcon({
-      className: '',
-      html: '<div class="glow-marker"></div>',
-      iconSize: [14, 14],
-      iconAnchor: [7, 7]
-    });
-    L.marker(coords, { icon: glowIcon }).addTo(map);
-  </script>
-</body>
-</html>`;
-};
-
 const About = () => {
     const [isMobile, setIsMobile] = useState(false);
-    const [isDark, setIsDark] = useState(
-        document.documentElement.getAttribute('data-theme') !== 'light'
-    );
     const gridRef = useRef(null);
 
     useEffect(() => {
@@ -179,14 +82,6 @@ const About = () => {
         check();
         window.addEventListener('resize', check);
         return () => window.removeEventListener('resize', check);
-    }, []);
-
-    useEffect(() => {
-        const observer = new MutationObserver(() => {
-            setIsDark(document.documentElement.getAttribute('data-theme') !== 'light');
-        });
-        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-        return () => observer.disconnect();
     }, []);
 
     return (
@@ -230,13 +125,24 @@ const About = () => {
 
                 {/* Location Card */}
                 <AboutCard delay={0.2} style={{ padding: 0, overflow: 'hidden', minHeight: '220px' }}>
-                    <iframe
-                        key={isDark ? 'dark-location-map' : 'light-location-map'}
-                        srcDoc={getMapHTML(isDark)}
-                        style={{ width: '100%', height: '100%', minHeight: '220px', border: 'none', display: 'block' }}
-                        title="Location Map"
-                        sandbox="allow-scripts allow-same-origin"
-                    />
+                    <div style={{
+                        position: 'relative',
+                        width: '100%',
+                        paddingBottom: '56.25%',
+                        minHeight: '220px',
+                        overflow: 'hidden',
+                        borderRadius: '8px',
+                        background: 'var(--bg-elevated)',
+                    }}>
+                        <iframe
+                            src="https://maps.google.com/maps?q=Jharkhand&t=m&z=6&ie=UTF8&iwloc=B&output=embed"
+                            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
+                            title="Map of Jharkhand, India"
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                        />
+                    </div>
                 </AboutCard>
 
                 {/* Philosophy Card */}
