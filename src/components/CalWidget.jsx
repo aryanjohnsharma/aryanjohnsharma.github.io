@@ -1,7 +1,8 @@
 import { getCalApi } from "@calcom/embed-react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Calendar } from "lucide-react";
+import { PikaIcon } from "@pikaicons/react";
+import { CalendarIcon } from "@pikaicons/core-free";
 import playPressSound from "../utils/playPressSound";
 
 const CalWidget = () => {
@@ -57,7 +58,7 @@ const CalWidget = () => {
         outline: 'none',
       }}
     >
-      <Calendar size={20} strokeWidth={2.5} />
+      <PikaIcon icon={CalendarIcon} size={20} aria-hidden="true" />
     </motion.button>
   );
 };

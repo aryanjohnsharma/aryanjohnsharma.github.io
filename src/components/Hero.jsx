@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, FileText } from 'lucide-react';
+import { PikaIcon } from '@pikaicons/react';
+import { EnvelopeIcon, File02Icon } from '@pikaicons/core-free';
 import PageWrapper from './PageWrapper';
 import ShinyText from './ShinyText/ShinyText';
 import About from './About';
@@ -195,10 +196,10 @@ const Hero = () => {
                             flexWrap: 'wrap'
                         }}>
                             <MagneticButton primary onClick={() => window.location.href = 'mailto:aryanjohnsharma@gmail.com'}>
-                                <Mail size={14} /> Email Me
+                                <PikaIcon icon={EnvelopeIcon} size={14} aria-hidden="true" /> Email Me
                             </MagneticButton>
                             <MagneticButton href="resume.pdf" target="_blank">
-                                <FileText size={14} /> Resume
+                                <PikaIcon icon={File02Icon} size={14} aria-hidden="true" /> Resume
                             </MagneticButton>
                         </div>
                     </div>

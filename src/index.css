@@ -243,12 +243,6 @@ main {
   display: block;
   width: 68%;
   height: 68%;
-  object-fit: contain;
-}
-
-.skill-vector-icon {
-  width: 68%;
-  height: 68%;
   color: var(--accent);
 }
 
@@ -260,16 +254,6 @@ main {
 
 .skill-link:focus-visible {
   box-shadow: inset 0 0 0 1px var(--accent);
-}
-
-.skill-icon-monochrome {
-  filter: invert(1);
-  opacity: 0.9;
-}
-
-[data-theme="light"] .skill-icon-monochrome {
-  filter: none;
-  opacity: 0.78;
 }
 
 @keyframes float {
@@ -521,6 +505,40 @@ body:hover .cursor-dot {
   display: inline-block;
 }
 
+.nav-label-contact {
+  display: grid;
+}
+
+.nav-label-contact > span {
+  grid-area: 1 / 1;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.nav-label-hover {
+  opacity: 0;
+  transform: translateY(2px);
+}
+
+.nav-link[href$="/contact"]:hover .nav-label-default,
+.nav-link[href$="/contact"]:focus-visible .nav-label-default,
+.nav-link[href$="/contact"]:active .nav-label-default {
+  opacity: 0;
+  transform: translateY(-2px);
+}
+
+.nav-link[href$="/contact"]:hover .nav-label-hover,
+.nav-link[href$="/contact"]:focus-visible .nav-label-hover,
+.nav-link[href$="/contact"]:active .nav-label-hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-label-contact > span {
+    transition: none;
+  }
+}
+
 /* Theme toggle item */
 .nav-theme-toggle {
   display: flex;
@@ -540,22 +558,47 @@ body:hover .cursor-dot {
   /* Bottom bar on mobile */
   .main-nav {
     top: auto !important;
-    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
     left: 50%;
-    width: calc(100% - 1.5rem) !important;
+    width: calc(100% - 2.5rem) !important;
     max-width: 26rem;
-    border-radius: 1.35rem;
-    border-color: var(--nav-border);
-    background-color: var(--nav-bg);
+    border-radius: 1.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    background-color: rgba(24, 24, 27, 0.62);
     box-sizing: border-box;
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    box-shadow: 0 12px 36px var(--nav-shadow), 0 2px 10px rgba(0, 0, 0, 0.12);
+    isolation: isolate;
+    overflow: hidden;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+    transition: none;
+  }
+
+  .main-nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.06) 28%, transparent 58%, rgba(255, 255, 255, 0.05));
   }
 
   .main-nav.scrolling {
-    border-radius: 1.6rem;
-    background-color: var(--nav-bg);
+    border-radius: 1.4rem;
+    background-color: rgba(24, 24, 27, 0.62);
+  }
+
+  [data-theme="light"] .main-nav,
+  [data-theme="light"] .main-nav.scrolling {
+    border-color: rgba(255, 255, 255, 0.78);
+    background-color: rgba(246, 247, 250, 0.7);
+    box-shadow: 0 8px 24px rgba(35, 43, 58, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 0 rgba(255, 255, 255, 0.48);
+  }
+
+  .nav-inner {
+    position: relative;
+    z-index: 1;
   }
 
   body {
@@ -563,6 +606,12 @@ body:hover .cursor-dot {
   }
 
   .nav-inner {
+    min-height: 68px;
+    padding: 0.35rem;
+  }
+
+  /* Keep the dock geometry identical before and after scrolling. */
+  .main-nav.scrolling .nav-inner {
     min-height: 68px;
     padding: 0.35rem;
   }
@@ -580,6 +629,10 @@ body:hover .cursor-dot {
   }
 
   .nav-link {
+    display: grid;
+    grid-template-rows: 24px auto;
+    align-content: center;
+    justify-items: center;
     width: 100%;
     min-height: 58px;
     padding: 0.4rem 0.15rem;
@@ -592,7 +645,8 @@ body:hover .cursor-dot {
   }
 
   .nav-link:active {
-    transform: scale(0.96);
+    transform: none;
+    transition: none;
   }
 
   /* Theme toggle handled as floating button on mobile */
@@ -615,8 +669,10 @@ body:hover .cursor-dot {
   }
 
   .nav-label {
-    display: inline-block;
+    display: block;
+    width: 100%;
     line-height: 1;
+    text-align: center;
   }
 
   .nav-link.active {

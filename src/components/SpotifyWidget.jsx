@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Music } from 'lucide-react';
+import { PikaIcon } from '@pikaicons/react';
+import { MusicBeamNoteIcon } from '@pikaicons/core-free';
 import playPressSound from '../utils/playPressSound';
 
 const SPOTIFY_IMG_URL = 'https://spotify-recently-played-readme.vercel.app/api?user=r95f1qecgkdxt73wiyorgokf2&count=7';
@@ -64,7 +65,7 @@ const SpotifyWidget = () => {
                     outline: 'none',
                 }}
             >
-                <Music size={20} strokeWidth={2.5} />
+                <PikaIcon icon={MusicBeamNoteIcon} size={20} aria-hidden="true" />
             </motion.button>
 
             <AnimatePresence>
@@ -113,7 +114,7 @@ const SpotifyWidget = () => {
                                 fontSize: '0.75rem',
                                 gap: '8px',
                             }}>
-                                <Music size={16} />
+                                <PikaIcon icon={MusicBeamNoteIcon} size={16} aria-hidden="true" />
                                 Loading tracks...
                             </div>
                         )}

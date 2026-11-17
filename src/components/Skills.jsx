@@ -1,30 +1,35 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Film, Sparkles } from 'lucide-react';
+import { PikaIcon } from '@pikaicons/react';
+import {
+    CodeIcon, PaintBrushIcon, GridDashboard02Icon, LayerThreeIcon, CloudIcon,
+    DatabaseIcon, Package01Icon, SendPlaneHorizontalIcon, GitBranchIcon,
+    GithubIcon, PhotoImageIcon, SparkleAi01Icon, VideoCallIcon,
+} from '@pikaicons/core-free';
 import PageWrapper from './PageWrapper';
 
 const skillsData = [
-    { id: 'java', name: 'Java', category: 'Languages', href: 'https://www.java.com/', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
-    { id: 'js', name: 'JavaScript', category: 'Languages', href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
-    { id: 'python', name: 'Python', category: 'Languages', href: 'https://www.python.org/', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
-    { id: 'html', name: 'HTML5', category: 'Frontend', href: 'https://developer.mozilla.org/en-US/docs/Web/HTML', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
-    { id: 'css', name: 'CSS3', category: 'Frontend', href: 'https://developer.mozilla.org/en-US/docs/Web/CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
-    { id: 'bootstrap', name: 'Bootstrap', category: 'Frontend', href: 'https://getbootstrap.com/', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg' },
-    { id: 'tailwind', name: 'Tailwind CSS', category: 'Frontend', href: 'https://tailwindcss.com/', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg' },
-    { id: 'react', name: 'React.js', category: 'Frontend', href: 'https://react.dev/', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-    { id: 'spring', name: 'Spring Boot', category: 'Backend', href: 'https://spring.io/projects/spring-boot', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg' },
-    { id: 'express', name: 'Express.js', category: 'Backend', href: 'https://expressjs.com/', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg', monochrome: true },
-    { id: 'mysql', name: 'MySQL', category: 'Databases', href: 'https://www.mysql.com/', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
-    { id: 'mongo', name: 'MongoDB', category: 'Databases', href: 'https://www.mongodb.com/', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
-    { id: 'supabase', name: 'Supabase', category: 'Databases', href: 'https://supabase.com/', icon: 'https://cdn.simpleicons.org/supabase/3FCF8E' },
-    { id: 'docker', name: 'Docker', category: 'Tools', href: 'https://www.docker.com/', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
-    { id: 'postman', name: 'Postman', category: 'Tools', href: 'https://www.postman.com/', icon: 'https://cdn.simpleicons.org/postman/FF6C37' },
-    { id: 'git', name: 'Git', category: 'Tools', href: 'https://git-scm.com/', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
-    { id: 'github', name: 'GitHub', category: 'Tools', href: 'https://github.com/', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', monochrome: true },
-    { id: 'photoshop', name: 'Photoshop', category: 'Tools', href: 'https://www.adobe.com/products/photoshop.html', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/adobephotoshop.svg', monochrome: true },
-    { id: 'topaz-video-ai', name: 'Topaz Video AI', category: 'Tools', href: 'https://www.topazlabs.com/topaz-video-ai', Icon: Sparkles },
-    { id: 'handbrake', name: 'HandBrake', category: 'Tools', href: 'https://handbrake.fr/', Icon: Film },
-    { id: 'davinci-resolve', name: 'DaVinci Resolve', category: 'Tools', href: 'https://www.blackmagicdesign.com/products/davinciresolve', icon: 'https://cdn.simpleicons.org/davinciresolve/233A51' },
+    { id: 'java', name: 'Java', category: 'Languages', href: 'https://www.java.com/', icon: CodeIcon },
+    { id: 'js', name: 'JavaScript', category: 'Languages', href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript', icon: CodeIcon },
+    { id: 'python', name: 'Python', category: 'Languages', href: 'https://www.python.org/', icon: CodeIcon },
+    { id: 'html', name: 'HTML5', category: 'Frontend', href: 'https://developer.mozilla.org/en-US/docs/Web/HTML', icon: CodeIcon },
+    { id: 'css', name: 'CSS3', category: 'Frontend', href: 'https://developer.mozilla.org/en-US/docs/Web/CSS', icon: PaintBrushIcon },
+    { id: 'bootstrap', name: 'Bootstrap', category: 'Frontend', href: 'https://getbootstrap.com/', icon: GridDashboard02Icon },
+    { id: 'tailwind', name: 'Tailwind CSS', category: 'Frontend', href: 'https://tailwindcss.com/', icon: PaintBrushIcon },
+    { id: 'react', name: 'React.js', category: 'Frontend', href: 'https://react.dev/', icon: LayerThreeIcon },
+    { id: 'spring', name: 'Spring Boot', category: 'Backend', href: 'https://spring.io/projects/spring-boot', icon: CloudIcon },
+    { id: 'express', name: 'Express.js', category: 'Backend', href: 'https://expressjs.com/', icon: CodeIcon },
+    { id: 'mysql', name: 'MySQL', category: 'Databases', href: 'https://www.mysql.com/', icon: DatabaseIcon },
+    { id: 'mongo', name: 'MongoDB', category: 'Databases', href: 'https://www.mongodb.com/', icon: DatabaseIcon },
+    { id: 'supabase', name: 'Supabase', category: 'Databases', href: 'https://supabase.com/', icon: DatabaseIcon },
+    { id: 'docker', name: 'Docker', category: 'Tools', href: 'https://www.docker.com/', icon: Package01Icon },
+    { id: 'postman', name: 'Postman', category: 'Tools', href: 'https://www.postman.com/', icon: SendPlaneHorizontalIcon },
+    { id: 'git', name: 'Git', category: 'Tools', href: 'https://git-scm.com/', icon: GitBranchIcon },
+    { id: 'github', name: 'GitHub', category: 'Tools', href: 'https://github.com/', icon: GithubIcon },
+    { id: 'photoshop', name: 'Photoshop', category: 'Tools', href: 'https://www.adobe.com/products/photoshop.html', icon: PhotoImageIcon },
+    { id: 'topaz-video-ai', name: 'Topaz Video AI', category: 'Tools', href: 'https://www.topazlabs.com/topaz-video-ai', icon: SparkleAi01Icon },
+    { id: 'handbrake', name: 'HandBrake', category: 'Tools', href: 'https://handbrake.fr/', icon: VideoCallIcon },
+    { id: 'davinci-resolve', name: 'DaVinci Resolve', category: 'Tools', href: 'https://www.blackmagicdesign.com/products/davinciresolve', icon: VideoCallIcon },
 ];
 
 const categories = ['All', 'Languages', 'Frontend', 'Backend', 'Databases', 'Tools'];
@@ -217,21 +222,12 @@ const Skills = () => {
                                             backgroundColor: 'var(--bg-elevated)',
                                         }}
                                     >
-                                        {skill.icon ? (
-                                            <img
-                                                src={skill.icon}
-                                                alt=""
-                                                aria-hidden="true"
-                                                className={skill.monochrome ? 'skill-icon skill-icon-monochrome' : 'skill-icon'}
-                                                loading="lazy"
-                                            />
-                                        ) : skill.Icon ? (
-                                            <skill.Icon
-                                                aria-hidden="true"
-                                                className="skill-vector-icon"
-                                                strokeWidth={1.8}
-                                            />
-                                        ) : null}
+                                        <PikaIcon
+                                            icon={skill.icon}
+                                            size={26}
+                                            aria-hidden="true"
+                                            className="skill-icon"
+                                        />
                                     </span>
                                     <span style={{
                                         minWidth: 0,

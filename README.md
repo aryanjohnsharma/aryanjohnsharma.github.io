@@ -16,7 +16,7 @@ No gimmicks, no bloat—just focused interactions, smooth transitions, and a cle
 - **React Router v6** — route-level navigation and page transitions.
 - **Framer Motion** — micro-interactions, section reveals, and animated route presence.
 - **OGL** — GPU-powered visual layer for custom background effects.
-- **Lucide React** — consistent icon system for navigation, CTAs, and contact actions.
+- **[Pikaicons](https://pikaicons.com/free-icons)** — SVG icon system used across navigation, actions, skills, and setup items; custom brand SVGs fill gaps where the free pack has no matching mark.
 - **Cal.com Embed (`@calcom/embed-react`)** — in-page scheduling widget integration.
 - **[React Bits](https://reactbits.dev)** — animated UI patterns (wired in via the shadcn-style registry in `components.json` as `@react-bits`); used as the source for elevated pieces such as **DarkVeil** (dark-mode veil background), **ShinyText** (hero headline treatment), **MagicBento** (About section cards), **BorderGlow** (Contact section cards), and **TiltedCard** (interactive tilt effects).
 - **[qrcode.react](https://www.npmjs.com/package/qrcode.react)** — programmatic SVG QR code generation for the UPI payment card on the Contact page; theme-adaptive (dark/light) with a tap-to-zoom lightbox modal.
@@ -28,9 +28,14 @@ No gimmicks, no bloat—just focused interactions, smooth transitions, and a cle
 - **[React Bits](https://reactbits.dev)** — drop-in motion and visual components; this repo pulls from the `@react-bits` registry for standout UI without reinventing every animation from scratch.
 - **Framer Motion** — interaction quality across core sections and transitions.
 - **OGL** — high-impact visual treatment in the background layer.
-- **Lucide React** — lightweight, consistent iconography.
+- **Pikaicons** — consistent SVG iconography throughout the interface.
 - **Cal.com Embed** — contact flow becomes scheduling, not just a form.
 - **qrcode.react** — crisp, scalable SVG QR codes generated at runtime; no static image files needed.
+
+## Icons and sound feedback
+
+- **Pikaicons** powers the site's SVG interface icons and the icons shown beside each hardware, development, audio, and creative tool in the Setup section. The app-specific Helium Browser and Zen Browser marks use their supplied SVGs.
+- Navigation links, the theme toggle, Spotify widget, and Cal.com booking control play a brief synthesized click tone on activation. The tone is generated with the Web Audio API in `src/utils/playPressSound.js`; the project does not load a separate sound file.
 
 ## Getting started
 
