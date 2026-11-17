@@ -72,7 +72,7 @@ const Navbar = () => {
             const easeProgress = 1 - Math.pow(1 - scrollProgress, 4);
 
             const minWidth = 528;
-            const maxWidth = window.innerWidth * 0.8;
+            const maxWidth = Math.min(768, window.innerWidth - 48);
             const currentWidth = maxWidth - (maxWidth - minWidth) * easeProgress;
 
             if (window.innerWidth >= 768) {
@@ -80,7 +80,7 @@ const Navbar = () => {
             }
         } else {
             setIsScrolling(false);
-            nav.style.width = '80%';
+            nav.style.width = `${Math.min(768, window.innerWidth - 48)}px`;
         }
 
         rafId.current = null;

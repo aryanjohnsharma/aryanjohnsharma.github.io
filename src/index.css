@@ -409,7 +409,7 @@ body:hover .cursor-dot {
   /* Desktop: top */
   top: 24px;
   bottom: auto;
-  width: 80%;
+  width: min(48rem, calc(100% - 3rem));
 }
 
 .main-nav.scrolling {
@@ -425,7 +425,7 @@ body:hover .cursor-dot {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.6rem 1.5rem;
+  padding: 0.6rem 0;
 }
 
 /* Logo */
@@ -437,7 +437,7 @@ body:hover .cursor-dot {
 }
 
 .nav-logo-img {
-  height: 40px;
+  height: 50px;
   width: auto;
   opacity: 0.9;
   transition: opacity 0.2s ease;
