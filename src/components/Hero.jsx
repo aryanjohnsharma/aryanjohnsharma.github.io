@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Mail, FileText } from 'lucide-react';
 import PageWrapper from './PageWrapper';
 import ShinyText from './ShinyText/ShinyText';
@@ -78,51 +78,7 @@ const MagneticButton = ({ children, href, primary, onClick }) => {
     );
 };
 
-// Terminal typing effect
-const TypeWriter = ({ text, delay = 0, speed = 50 }) => {
-    const [displayed, setDisplayed] = useState('');
-    const [started, setStarted] = useState(false);
-
-    useEffect(() => {
-        const startTimer = setTimeout(() => setStarted(true), delay);
-        return () => clearTimeout(startTimer);
-    }, [delay]);
-
-    useEffect(() => {
-        if (!started) return;
-        if (displayed.length < text.length) {
-            const timer = setTimeout(() => {
-                setDisplayed(text.slice(0, displayed.length + 1));
-            }, speed);
-            return () => clearTimeout(timer);
-        }
-    }, [displayed, started, text, speed]);
-
-    return (
-        <span>
-            {displayed}
-            {displayed.length < text.length && started && (
-                <motion.span
-                    animate={{ opacity: [1, 0] }}
-                    transition={{ repeat: Infinity, duration: 0.6 }}
-                    style={{
-                        display: 'inline-block',
-                        width: '2px',
-                        height: '1em',
-                        backgroundColor: 'var(--accent)',
-                        marginLeft: '2px',
-                        verticalAlign: 'text-bottom'
-                    }}
-                />
-            )}
-        </span>
-    );
-};
-
 const Hero = () => {
-    const { scrollY } = useScroll();
-    const textY = useTransform(scrollY, [0, 500], [0, 100]);
-    const imageY = useTransform(scrollY, [0, 500], [0, 40]);
     const [isMobile, setIsMobile] = useState(false);
     const [isDark, setIsDark] = useState(
         document.documentElement.getAttribute('data-theme') !== 'light'
@@ -144,19 +100,6 @@ const Hero = () => {
         return () => observer.disconnect();
     }, []);
 
-    const container = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: { staggerChildren: 0.15 }
-        }
-    };
-
-    const item = {
-        hidden: { opacity: 0, y: 30 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
-    };
-
     return (
         <PageWrapper>
             <div className="panel" style={{
@@ -166,22 +109,6 @@ const Hero = () => {
                 width: '100%',
                 marginTop: isMobile ? '70px' : '100px', // Header spacing
             }}>
-                {/* Profile Cover Box */}
-                <div style={{
-                    position: 'relative',
-                    width: '100%',
-                    aspectRatio: isMobile ? '2.5/1' : '4/1',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: isDark ? 'rgba(0, 0, 0, 0.4)' : 'rgba(255, 255, 255, 0.4)',
-                    overflow: 'hidden',
-                }}>
-                    <div style={{ zIndex: 1, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', fontSize: isMobile ? '0.7rem' : '0.9rem' }}>
-                       <span style={{ color: 'var(--accent)' }}>▸</span> <TypeWriter text="~/portfolio" delay={300} speed={60} />
-                    </div>
-                </div>
-
                 {/* Profile Header Block */}
                 <div style={{
                     display: 'flex',
@@ -190,18 +117,18 @@ const Hero = () => {
                 }}>
                     {/* Avatar Container */}
                     <div style={{
-                        padding: '0 1.5rem 1.5rem 1.5rem',
+                        padding: '1.5rem',
                         borderRight: isMobile ? 'none' : '1px solid var(--border-line)',
                         borderBottom: isMobile ? '1px solid var(--border-line)' : 'none',
                         display: 'flex',
-                        alignItems: 'flex-start',
+                        alignItems: 'center',
                         justifyContent: 'center',
                         flexShrink: 0
                     }}>
                         <div style={{
                             width: isMobile ? '110px' : '150px',
                             height: isMobile ? '110px' : '150px',
-                            marginTop: isMobile ? '-3rem' : '-3rem', // spill into the cover
+                            marginTop: 0,
                             border: '1px solid var(--border-line)',
                             backgroundColor: 'var(--bg-base)',
                             padding: '4px',
