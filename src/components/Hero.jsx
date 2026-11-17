@@ -114,6 +114,7 @@ const Hero = () => {
                     display: 'flex',
                     flexDirection: isMobile ? 'column' : 'row',
                     width: '100%',
+                    borderTop: '1px solid var(--border-line)',
                 }}>
                     {/* Avatar Container */}
                     <div style={{
