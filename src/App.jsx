@@ -9,7 +9,7 @@ import Contact from './components/Contact';
 import Setup from './components/Setup';
 import SpotifyWidget from './components/SpotifyWidget';
 import CalWidget from './components/CalWidget';
-import DarkVeil from './components/DarkVeil/DarkVeil';
+import GradientASCII from './components/GradientASCII';
 
 function App() {
     const location = useLocation();
@@ -27,43 +27,28 @@ function App() {
 
     return (
         <div className="app-container">
-            {/* Dark mode: animated DarkVeil background */}
-            <div style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                zIndex: -1,
-                opacity: isDark ? 0.35 : 0,
-                pointerEvents: 'none',
-                overflow: 'hidden',
-                transition: 'opacity 0.6s ease',
-            }}>
-                <DarkVeil
-                    hueShift={204}
-                    noiseIntensity={0}
-                    scanlineIntensity={0.02}
-                    speed={1.6}
-                    scanlineFrequency={1.1}
-                    warpAmount={1.5}
+            <div className="site-background" aria-hidden="true" style={{ opacity: isDark ? 0.46 : 0.52 }}>
+                <GradientASCII
+                    colors={isDark
+                        ? ['#1d0b02', '#451a03', '#a44408', '#e9853c']
+                        : ['#fff5d3', '#ffdfbc', '#ffa37e', '#ff822d']}
+                    shape="horizon"
+                    characters=" =+xX0S8#@"
+                    cellSize={24}
+                    density={0.52}
+                    glyphOpacity={0.3}
+                    gradientOpacity={0.68}
+                    glow={0.18}
+                    flicker={0.08}
+                    softness={0.83}
+                    flow={0.35}
+                    speed={0.45}
+                    mouseInteraction={false}
+                    scrambleRadius={0.12}
+                    lightMode={!isDark}
+                    dpr={Math.min(window.devicePixelRatio || 1, 1.5)}
                 />
             </div>
-
-            {/* Light mode: subtle warm gradient background */}
-            <div style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                zIndex: -1,
-                opacity: isDark ? 0 : 1,
-                pointerEvents: 'none',
-                overflow: 'hidden',
-                transition: 'opacity 0.6s ease',
-                background: 'radial-gradient(ellipse at 20% 20%, rgba(224, 85, 0, 0.04) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(224, 85, 0, 0.03) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.01) 0%, transparent 70%)',
-            }} />
 
             <Navbar />
             <AnimatePresence mode="wait">

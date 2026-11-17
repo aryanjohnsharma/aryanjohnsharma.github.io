@@ -177,16 +177,6 @@ const Hero = () => {
                     backgroundColor: isDark ? 'rgba(0, 0, 0, 0.4)' : 'rgba(255, 255, 255, 0.4)',
                     overflow: 'hidden',
                 }}>
-                    {/* Ambient grid dots inside cover */}
-                    <div style={{
-                        position: 'absolute',
-                        inset: 0,
-                        zIndex: 0,
-                        pointerEvents: 'none',
-                        opacity: 0.15,
-                        backgroundImage: `radial-gradient(circle, var(--accent) 1px, transparent 1px)`,
-                        backgroundSize: '20px 20px',
-                    }} />
                     <div style={{ zIndex: 1, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', fontSize: isMobile ? '0.7rem' : '0.9rem' }}>
                        <span style={{ color: 'var(--accent)' }}>▸</span> <TypeWriter text="~/portfolio" delay={300} speed={60} />
                     </div>

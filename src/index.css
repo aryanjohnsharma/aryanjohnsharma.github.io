@@ -107,20 +107,6 @@ body {
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Subtle dot-grid background */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.4;
-  background-image: radial-gradient(circle, rgba(255, 106, 0, 0.06) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
 h1,
 h2,
 h3,
@@ -149,6 +135,16 @@ a:hover {
   min-height: 100vh;
   min-width: 0;
   width: 100%;
+  position: relative;
+  isolation: isolate;
+}
+
+.site-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 main {
@@ -697,13 +693,6 @@ body:hover .cursor-dot {
 
 [data-theme="light"] ::-webkit-scrollbar-track {
   background: var(--bg-elevated);
-}
-
-/* Replace dot-grid with a lighter subtle pattern */
-[data-theme="light"] body::before {
-  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.5;
 }
 
 /* Glass panel for light mode */
