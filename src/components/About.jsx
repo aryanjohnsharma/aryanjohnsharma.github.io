@@ -75,6 +75,9 @@ const AboutCard = ({ children, delay, colSpan, accent, className = "", style: ex
 
 const About = () => {
     const [isMobile, setIsMobile] = useState(false);
+    const [isDark, setIsDark] = useState(
+        document.documentElement.getAttribute('data-theme') !== 'light'
+    );
     const gridRef = useRef(null);
 
     useEffect(() => {
@@ -82,6 +85,14 @@ const About = () => {
         check();
         window.addEventListener('resize', check);
         return () => window.removeEventListener('resize', check);
+    }, []);
+
+    useEffect(() => {
+        const observer = new MutationObserver(() => {
+            setIsDark(document.documentElement.getAttribute('data-theme') !== 'light');
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+        return () => observer.disconnect();
     }, []);
 
     return (
@@ -136,7 +147,15 @@ const About = () => {
                     }}>
                         <iframe
                             src="https://maps.google.com/maps?q=Jharkhand&t=m&z=6&ie=UTF8&iwloc=B&output=embed"
-                            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
+                            style={{
+                                position: 'absolute',
+                                inset: 0,
+                                width: '100%',
+                                height: '100%',
+                                border: 0,
+                                filter: isDark ? 'invert(0.9) hue-rotate(180deg) brightness(0.86) contrast(0.9)' : 'none',
+                                transition: 'filter 0.35s ease',
+                            }}
                             title="Map of Jharkhand, India"
                             allowFullScreen
                             loading="lazy"
@@ -160,8 +179,8 @@ const About = () => {
                 <AboutCard delay={0.4}>
                     <h3 style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.8rem', fontFamily: 'var(--font-mono)', textTransform: 'uppercase', letterSpacing: '2px' }}>Current Focus</h3>
                     <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem', color: 'var(--text-body)', fontSize: '0.95rem' }}>
-                        <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><div style={{ width: '6px', height: '6px', backgroundColor: 'var(--accent)', flexShrink: 0 }} /> Generative AI & LLMs</li>
-                        <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><div style={{ width: '6px', height: '6px', backgroundColor: 'var(--accent)', flexShrink: 0 }} /> Scalable Backend Architecture</li>
+                        <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><div style={{ width: '6px', height: '6px', backgroundColor: 'var(--accent)', flexShrink: 0 }} /> AI Agents</li>
+                        <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><div style={{ width: '6px', height: '6px', backgroundColor: 'var(--accent)', flexShrink: 0 }} /> Personal Growth Systems</li>
                         <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><div style={{ width: '6px', height: '6px', backgroundColor: 'var(--accent)', flexShrink: 0 }} /> Modern Frontend Experiences</li>
                     </ul>
                 </AboutCard>
