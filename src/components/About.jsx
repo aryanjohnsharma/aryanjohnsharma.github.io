@@ -128,9 +128,6 @@ const About = () => {
                         <p style={{ marginBottom: '1.2rem', fontSize: 'clamp(0.9rem, 1.5vw, 1.2rem)' }}>
                             Frontend is where I spend most of my time. Picking up full-stack MERN as I go, building projects that actually connect both ends.
                         </p>
-                        <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.2rem)' }}>
-                            Curious about how AI gets used in real products, not just talked about.
-                        </p>
                     </div>
                 </AboutCard>
 
@@ -164,19 +161,8 @@ const About = () => {
                     </div>
                 </AboutCard>
 
-                {/* Philosophy Card */}
-                <AboutCard delay={0.3}>
-                    <div style={{ width: '30px', height: '2px', backgroundColor: 'var(--accent)', marginBottom: '0.8rem' }} />
-                    <h3 style={{ fontSize: 'clamp(1.2rem, 2vw, 1.8rem)', lineHeight: 1.3, color: 'var(--text-primary)', fontWeight: 600 }}>
-                        "Figure it out, then build it. Usually in that order."
-                    </h3>
-                    <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', marginTop: '0.5rem', letterSpacing: '1px' }}>
-                            // Philosophy
-                    </p>
-                </AboutCard>
-
                 {/* Current Focus Card */}
-                <AboutCard delay={0.4}>
+                <AboutCard delay={0.3}>
                     <h3 style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.8rem', fontFamily: 'var(--font-mono)', textTransform: 'uppercase', letterSpacing: '2px' }}>Current Focus</h3>
                     <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem', color: 'var(--text-body)', fontSize: '0.95rem' }}>
                         <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><div style={{ width: '6px', height: '6px', backgroundColor: 'var(--accent)', flexShrink: 0 }} /> AI Agents</li>
