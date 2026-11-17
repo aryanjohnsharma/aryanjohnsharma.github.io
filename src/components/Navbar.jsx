@@ -71,7 +71,7 @@ const Navbar = () => {
             const scrollProgress = Math.min(window.scrollY / MAX_SCROLL, 1);
             const easeProgress = 1 - Math.pow(1 - scrollProgress, 4);
 
-            const minWidth = 528;
+            const minWidth = 600;
             const maxWidth = Math.min(768, window.innerWidth - 48);
             const currentWidth = maxWidth - (maxWidth - minWidth) * easeProgress;
 

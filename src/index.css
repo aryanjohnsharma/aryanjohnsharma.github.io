@@ -421,6 +421,10 @@ body:hover .cursor-dot {
   -webkit-backdrop-filter: blur(20px);
 }
 
+.main-nav.scrolling .nav-inner {
+  padding: 0.6rem 0.75rem;
+}
+
 .nav-inner {
   display: flex;
   justify-content: space-between;
